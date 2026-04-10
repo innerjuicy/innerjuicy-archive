@@ -10,81 +10,87 @@
         tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
     </script>
     <style>
-        /* 매트 블랙 배경과 천장 스포트라이트 */
-        body { 
-            background-color: #030303; 
-            color: #ffffff; 
-            overflow-x: hidden; 
-            background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, rgba(3, 3, 3, 1) 60%);
-            background-attachment: fixed;
+        body { background-color: #050505; color: white; overflow-x: hidden; }
+        /* 기하학적 네온 라인 배경 효과 */
+        .neon-bg {
+            position: fixed; inset: 0;
+            background-image: linear-gradient(0deg, transparent 24%, rgba(0,255,255,0.02) 25%, rgba(0,255,255,0.02) 26%, transparent 27%, transparent 74%, rgba(0,255,255,0.02) 75%, rgba(0,255,255,0.02) 76%, transparent 77%), linear-gradient(90deg, transparent 24%, rgba(0,255,255,0.02) 25%, rgba(0,255,255,0.02) 26%, transparent 27%, transparent 74%, rgba(0,255,255,0.02) 75%, rgba(0,255,255,0.02) 76%, transparent 77%);
+            background-size: 50px 50px; opacity: 0.1; z-index: -1;
         }
 
-        /* 하이엔드 무광 유리 질감 */
-        .glass { 
-            background: rgba(15, 15, 15, 0.5); 
-            backdrop-filter: blur(24px); 
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.03); 
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
+        .glass { background: rgba(20, 20, 20, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .album-cover { transition: all 0.3s ease; cursor: pointer; }
+        .album-cover:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.3); }
+        .inner-item { transition: all 0.3s ease; position: relative; }
+        .inner-item:hover { transform: scale(1.03); }
         
-        .album-cover { transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; }
-        .album-cover:hover { transform: translateY(-3px); background: rgba(25, 25, 25, 0.6); border-color: rgba(255,255,255,0.08); }
+        /* 등급별 단계적 후광 효과 (누끼 이미지 전용) */
         
-        .inner-item { transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); position: relative; }
-        .inner-item:hover { transform: scale(1.02); }
-        .showroom-image { max-height: 100%; max-width: 100%; object-fit: contain; transition: filter 0.5s ease, transform 0.5s ease; }
+        /* 1단계: Common & Rare Base (Silver Pedestal - 은은한 진열 효과) */
+        .shadow-common { filter: drop-shadow(0 10px 15px rgba(192, 192, 192, 0.25)); transition: filter 0.3s ease; }
+        .inner-item:hover .shadow-common { filter: drop-shadow(0 15px 25px rgba(192, 192, 192, 0.45)); }
+        .border-common { border-bottom: 3px solid #C0C0C0; }
+
+        /* 2단계: Rare (Cyan Halo - 깊은 색수차 & 후광 효과) */
+        .shadow-rare { filter: drop-shadow(0 10px 15px rgba(0, 255, 255, 0.35)); transition: filter 0.3s ease; }
+        .inner-item:hover .shadow-rare { filter: drop-shadow(0 20px 30px rgba(0, 255, 255, 0.65)); }
+        .border-rare { border-bottom: 3px solid #00FFFF; }
+
+        /* 3단계: Ultra (Purple Aura - 강렬한 오라 & 바닥 반사 & 펄스 애니메이션) */
+        .shadow-ultra { filter: drop-shadow(0 15px 25px rgba(128, 0, 128, 0.45)); transition: filter 0.3s ease; }
+        .inner-item:hover .shadow-ultra { filter: drop-shadow(0 30px 50px rgba(128, 0, 128, 0.85)); animation: ultra-pulse 1.5s infinite; }
+        .border-ultra { border-bottom: 3px solid #800080; }
+
+        /* Ultra 전용 바닥 반사 효과 */
+        .ultra-item::after {
+            content: '';
+            position: absolute;
+            bottom: -30px; /* 바닥 진열대 위치 */
+            left: 20%;
+            width: 60%;
+            height: 40px;
+            background: radial-gradient(ellipse at center, rgba(128, 0, 128, 0.6) 0%, rgba(128, 0, 128, 0) 70%);
+            filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: -1;
+        }
+        .ultra-item:hover::after {
+            opacity: 1;
+            transform: scaleY(1.5);
+        }
+
+        /* Ultra 전용 맥박 애니메이션 */
+        @keyframes ultra-pulse {
+            0%, 100% { filter: drop-shadow(0 30px 50px rgba(128, 0, 128, 0.85)); }
+            50% { filter: drop-shadow(0 30px 60px rgba(128, 0, 128, 1)); }
+        }
+
+        /* Bubbles 전용 쇼케이스 (image_7.png bubbles 참고) */
+        .bubbles-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: rgba(20, 20, 20, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); rounded-3xl p-12 flex items-center justify-center overflow-hidden;
+        }
+        .bubbles-container img { max-height: 80%; }
         
-        /* 등급별 럭셔리 라이팅 (네온 삭제, 은은한 입체감만 부여) */
-        /* Common & Rare: 플래티넘 스튜디오 그림자 */
-        .shadow-base { filter: drop-shadow(0 15px 25px rgba(255, 255, 255, 0.03)); }
-        .inner-item:hover .shadow-base { filter: drop-shadow(0 25px 40px rgba(255, 255, 255, 0.08)); transform: translateY(-4px); }
-
-        /* Ultra: 샴페인 골드 (우아하고 천천히 숨쉬는 빛) */
-        .shadow-ultra { filter: drop-shadow(0 20px 30px rgba(212, 175, 55, 0.15)); }
-        .inner-item:hover .shadow-ultra { 
-            animation: luxury-breathe 4s ease-in-out infinite; 
-            transform: translateY(-6px);
-        }
-
-        @keyframes luxury-breathe {
-            0%, 100% { filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.2)); }
-            50% { filter: drop-shadow(0 30px 60px rgba(212, 175, 55, 0.4)); }
-        }
-
-        /* 미니멀 라인 데코 */
-        .line-common { border-left: 2px solid rgba(255, 255, 255, 0.1); }
-        .line-rare { border-left: 2px solid rgba(255, 255, 255, 0.3); }
-        .line-ultra { border-left: 2px solid rgba(212, 175, 55, 0.6); }
-
-        /* 단독 쇼케이스 스튜디오 */
-        .studio-showcase {
-            position: relative; width: 100%; height: 500px;
-            background: linear-gradient(to bottom, rgba(20,20,20,0) 0%, rgba(10,10,10,0.8) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.02); border-radius: 24px;
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
-        }
-
-        .expand-grid { display: none; opacity: 0; transform: translateY(-10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .expand-grid { display: none; opacity: 0; transform: translateY(-10px); transition: opacity 0.4s ease, transform 0.4s ease; }
         .expand-grid.active { display: grid; opacity: 1; transform: translateY(0); }
-        
-        /* 럭셔리 텍스트 그라디언트 */
         .text-gradient { background: linear-gradient(135deg, #fff 0%, #a8a8a8 50%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .text-gold { color: #D4AF37; }
+        .os-btn { background: rgba(32, 129, 226, 0.8); backdrop-filter: blur(4px); transition: all 0.2s; }
+        .os-btn:hover { background: rgba(32, 129, 226, 1); transform: scale(1.05); box-shadow: 0 0 20px rgba(32,129,226,0.6); }
         
-        /* 미니멀 아웃라인 버튼 */
-        .luxury-btn { 
-            border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: white;
-            transition: all 0.3s ease; backdrop-filter: blur(4px);
-        }
-        .luxury-btn:hover { background: white; color: black; border-color: white; transform: translateY(-2px); }
+        .pulse-text { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
     </style>
 </head>
 <body class="antialiased">
+    <div class="neon-bg"></div>
 
     <nav class="fixed w-full top-0 z-40 glass border-b-0 border-white/10 px-6 py-4 flex justify-between items-center">
         <div class="text-xl font-bold tracking-widest uppercase">Inner Juicy</div>
-        <a href="https://innerjuicy-mint.netlify.app/" target="_blank" class="text-sm font-semibold tracking-wider hover:text-white transition-colors">Minting Site ↗</a>
+        <a href="https://innerjuicy-mint.netlify.app/" target="_blank" class="text-sm font-semibold tracking-wider hover:text-gray-300">Minting Site ↗</a>
     </nav>
 
     <header class="pt-40 pb-16 flex flex-col items-center text-center px-4 relative">
@@ -106,19 +112,19 @@
         </div>
 
         <div id="sec-outfits" class="section-container hidden">
-            <div class="studio-showcase mb-16">
-                <div class="absolute left-16 top-1/2 -translate-y-1/2 z-10 text-left">
-                    <span class="text-[10px] text-[#D4AF37] font-semibold uppercase tracking-wider bg-purple-500/20 px-2 py-1 rounded">Ultra Level</span>
-                    <h2 class="text-5xl font-bold mt-2 tracking-tight">Dragon Armor</h2>
-                    <p class="text-gray-400 text-base font-light mt-1">Limited Edition Outfit (Max 10 Supply)</p>
-                    <a href="https://opensea.io/collection/inner-juicy?search[stringTraits][0][name]=outfits&search[stringTraits][0][values][0]=Dragon Armor" target="_blank" class="luxury-btn px-6 py-3 text-xs font-bold mt-8 inline-block">View on OpenSea</a>
+            <div class="bubbles-container mb-12 relative z-10 p-0 overflow-visible">
+                <div class="absolute left-10 top-1/2 -translate-y-1/2 z-10 text-left">
+                    <span class="text-[10px] text-purple-400 font-bold uppercase tracking-wider bg-purple-500/20 px-2 py-1 rounded">Ultra Level</span>
+                    <h2 class="text-5xl font-black mt-2 text-gradient">Dragon Armor</h2>
+                    <p class="text-gray-400 text-base font-light mt-1">Exclusive Outfit (Max 10 Supply)</p>
+                    <a href="https://opensea.io/collection/inner-juicy?search[stringTraits][0][name]=outfits&search[stringTraits][0][values][0]=Dragon Armor" target="_blank" class="os-btn px-6 py-3 rounded-lg text-white text-sm font-bold shadow-[0_0_20px_rgba(32,129,226,0.6)] mt-8 inline-block">Buy on OpenSea ↗</a>
                 </div>
-                <div class="absolute inset-0 z-0 flex items-center justify-end p-12 overflow-visible pr-32">
+                <div class="absolute inset-0 z-0 flex items-center justify-center p-12 pr-32">
                      <img src="./images/outfit_ultra_dragon_armor.png" class="max-h-[85%] shadow-ultra showroom-image" style="max-height: 85%; transform: scale(1.1);"> 
                 </div>
             </div>
 
-            <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center line-common" onclick="toggleExpand('grid-cloth-common')">
+            <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center border-l-4 border-gray-400" onclick="toggleExpand('grid-cloth-common')">
                 <div class="flex items-center gap-6">
                     <div class="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 border border-white/10">IMG</div>
                     <div><span class="text-[10px] text-gray-300 font-bold uppercase tracking-wider bg-white/10 px-2 py-1 rounded">Common Base</span>
@@ -127,7 +133,7 @@
             </div>
             <div id="grid-cloth-common" class="expand-grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 pl-6 md:pl-24"></div>
 
-            <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center line-rare" onclick="toggleExpand('grid-cloth-rare')">
+            <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center border-l-4 border-cyan-500" onclick="toggleExpand('grid-cloth-rare')">
                 <div class="flex items-center gap-6">
                     <div class="w-16 h-16 bg-cyan-900/30 rounded-xl flex items-center justify-center text-xs text-cyan-400 border border-cyan-500/30">IMG</div>
                     <div><span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider bg-cyan-500/20 px-2 py-1 rounded">Rare Halo</span>
@@ -192,14 +198,14 @@
             return `
                 <div class="absolute inset-0 bg-black/70 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <span class="text-[10px] font-bold ${badgeColorClass} mb-4 text-center px-2 tracking-widest uppercase">${badgeLabel}</span>
-                    <a href="${linkUrl}" target="_blank" onclick="event.stopPropagation()" class="luxury-btn px-4 py-2 text-xs font-bold">
+                    <a href="${linkUrl}" target="_blank" onclick="event.stopPropagation()" class="os-btn px-4 py-2 text-xs font-bold">
                         View Item
                     </a>
                 </div>
             `;
         }
 
-        // ================= 과일 Heads 데이터 =================
+        // ================= 과일 Heads 데이터 (Accordion 구조, Ultra 부활) =================
         const fruits = [
             { id: 'apple', icon: '🍎', name: 'Apple' }, { id: 'banana', icon: '🍌', name: 'Banana' },
             { id: 'strawberry', icon: '🍓', name: 'Strawberry' }, { id: 'kiwi', icon: '🥝', name: 'Kiwi' },
@@ -243,7 +249,8 @@
             fruitContainer.insertAdjacentHTML('beforeend', html);
         });
 
-        // ================= 옷 데이터 =================
+        // ================= 옷 데이터 (Common, Rare 구분 및 정확한 매핑, 크기 확대) =================
+        // 스크린샷 2, 3 기반 일반 옷 (Common)
         const clothCommon = [ { trait: 'Navy Sweater', files: ['Navy sweater cross pose 1#10.png', 'Navy sweater cross pose 2#10.png', 'Navy sweater cross pose 3#10.png', 'Navy sweater handshake pose#10.png'] } ];
         const clothRare = [
             { trait: 'Astronaut', files: ['Astronaut suit pose 1#10.png', 'Astronaut suit pose 2#10.png', 'Astronaut handshake pose#10.png'] },
@@ -272,8 +279,10 @@
         renderOutfitsGrid('grid-cloth-common', clothCommon, 'shadow-base');
         renderOutfitsGrid('grid-cloth-rare', clothRare, 'shadow-base');
 
-        // ================= Ultra Archive 데이터 =================
+        // ================= Ultra Archive 데이터 (👑 강화 및 정확한 매핑) =================
+        // Ultra Heads: 엑셀 데이터를JavaScript 객체로 변환하여 사용. ultra_head 열에서 고유한 값을 추출.
         const ultraHeadsData = ["Amber", "Neon", "Void", "Molten", "Obsidian", "Aurora", "Sunset", "Ice", "Galaxy", "Toxic", "Darkmatter", "Chroma", "Electric", "Crystal", "Solar", "Diamond", "Plasma"];
+        // Ultra Outfits: 엑셀 데이터를JavaScript 객체로 변환하여 사용. outfit 열에서 고유한 값을 추출.
         const ultraOutfitsData = ["Dragon Armor", "Jungle Vest", "Steampunk Vest", "Pharaoh", "Silver Spiked Punk", "Nebula Hood", "Gold Astronaut"];
 
         function renderUltraArchiveSection() {
