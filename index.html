@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inner Juicy | The Archive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
@@ -69,7 +69,7 @@
         .expand-grid.active { display: grid; opacity: 1; transform: translateY(0); }
         
         /* 럭셔리 텍스트 그라디언트 */
-        .text-gradient { background: linear-gradient(180deg, #ffffff 0%, #888888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient { background: linear-gradient(135deg, #fff 0%, #a8a8a8 50%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .text-gold { color: #D4AF37; }
         
         /* 미니멀 아웃라인 버튼 */
@@ -82,21 +82,21 @@
 </head>
 <body class="antialiased">
 
-    <nav class="fixed w-full top-0 z-40 bg-black/50 backdrop-blur-md border-b border-white/5 px-8 py-5 flex justify-between items-center">
-        <div class="text-sm font-bold tracking-[0.2em] uppercase">Inner Juicy</div>
-        <a href="https://innerjuicy-mint.netlify.app/" target="_blank" class="text-xs font-medium tracking-[0.1em] text-gray-400 hover:text-white transition-colors">Minting Site ↗</a>
+    <nav class="fixed w-full top-0 z-40 glass border-b-0 border-white/10 px-6 py-4 flex justify-between items-center">
+        <div class="text-xl font-bold tracking-widest uppercase">Inner Juicy</div>
+        <a href="https://innerjuicy-mint.netlify.app/" target="_blank" class="text-sm font-semibold tracking-wider hover:text-white transition-colors">Minting Site ↗</a>
     </nav>
 
-    <header class="pt-48 pb-20 flex flex-col items-center text-center px-4 relative z-10">
-        <p class="text-[10px] uppercase tracking-[0.4em] text-gray-500 mb-6">The Core Collection</p>
-        <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 text-gradient">THE ARCHIVE</h1>
-        <p class="text-gray-400 text-sm md:text-base font-light tracking-wide max-w-lg">Explore the essential assets. A meticulously curated exhibition of the Inner Juicy universe.</p>
+    <header class="pt-40 pb-16 flex flex-col items-center text-center px-4 relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-4 relative z-10 text-gradient">THE ARCHIVE</h1>
+        <p class="text-gray-400 text-lg font-light relative z-10">Explore the core assets. Click a collection to expand.</p>
     </header>
 
-    <div class="flex justify-center gap-6 mb-20 relative z-10">
-        <button id="btn-heads" class="text-xs font-semibold tracking-[0.15em] uppercase px-6 py-3 border-b-2 border-white text-white transition-all" onclick="switchTab('heads')">Fruit Heads</button>
-        <button id="btn-outfits" class="text-xs font-semibold tracking-[0.15em] uppercase px-6 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-300 transition-all" onclick="switchTab('outfits')">Outfits</button>
-        <button id="btn-ultra" class="text-xs font-semibold tracking-[0.15em] uppercase px-6 py-3 border-b-2 border-transparent text-[#D4AF37] opacity-60 hover:opacity-100 transition-all" onclick="switchTab('ultra')">Ultra Archive</button>
+    <div class="flex justify-center gap-4 mb-16 relative z-10">
+        <button id="btn-heads" class="tab-btn px-8 py-3 rounded-full glass bg-white/10 font-bold tracking-wide transition-all text-white" onclick="switchTab('heads')">🍎 FRUIT HEADS</button>
+        <button id="btn-outfits" class="tab-btn px-8 py-3 rounded-full glass hover:bg-white/5 font-bold tracking-wide transition-all text-gray-400" onclick="switchTab('outfits')">👕 OUTFITS</button>
+        <button id="btn-ultra" class="tab-btn px-8 py-3 rounded-full glass hover:bg-white/5 font-bold tracking-wide transition-all text-purple-400 border border-purple-500/30" onclick="switchTab('ultra')">🌟 ULTRA ARCHIVE</button>
     </div>
 
     <main class="max-w-7xl mx-auto px-6 pb-32 relative z-10">
@@ -108,51 +108,75 @@
         <div id="sec-outfits" class="section-container hidden">
             <div class="studio-showcase mb-16">
                 <div class="absolute left-16 top-1/2 -translate-y-1/2 z-10 text-left">
-                    <span class="text-[10px] text-[#D4AF37] font-semibold uppercase tracking-[0.2em]">Exhibition Piece</span>
-                    <h2 class="text-5xl font-bold mt-4 tracking-tight">Dragon Armor</h2>
-                    <p class="text-gray-400 text-sm font-light mt-3 tracking-wide">Limited Edition Ultra Outfit.</p>
-                    <a href="https://opensea.io/collection/inner-juicy?search[stringTraits][0][name]=outfits&search[stringTraits][0][values][0]=Dragon Armor" target="_blank" class="luxury-btn px-6 py-3 text-xs tracking-widest uppercase mt-10 inline-block">View on OpenSea</a>
+                    <span class="text-[10px] text-[#D4AF37] font-semibold uppercase tracking-wider bg-purple-500/20 px-2 py-1 rounded">Ultra Level</span>
+                    <h2 class="text-5xl font-bold mt-2 tracking-tight">Dragon Armor</h2>
+                    <p class="text-gray-400 text-base font-light mt-1">Limited Edition Outfit (Max 10 Supply)</p>
+                    <a href="https://opensea.io/collection/inner-juicy?search[stringTraits][0][name]=outfits&search[stringTraits][0][values][0]=Dragon Armor" target="_blank" class="luxury-btn px-6 py-3 text-xs font-bold mt-8 inline-block">View on OpenSea</a>
                 </div>
-                <div class="w-full h-full flex items-center justify-end pr-32">
-                     <img src="./images/outfit_ultra_dragon_armor.png" class="max-h-[85%] shadow-ultra object-contain" style="transform: scale(1.1);">
+                <div class="absolute inset-0 z-0 flex items-center justify-end p-12 overflow-visible pr-32">
+                     <img src="./images/outfit_ultra_dragon_armor.png" class="max-h-[85%] shadow-ultra showroom-image" style="max-height: 85%; transform: scale(1.1);"> 
                 </div>
             </div>
 
-            <div class="album-cover glass rounded-xl p-8 mb-4 flex justify-between items-center line-common" onclick="toggleExpand('grid-cloth-common')">
-                <div><span class="text-[10px] text-gray-500 font-medium uppercase tracking-[0.2em]">Essential</span>
-                <h2 class="text-xl font-bold mt-2 tracking-tight">Navy Sweaters</h2></div>
-                <div class="drop-icon text-gray-500 font-light text-2xl">+</div>
+            <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center line-common" onclick="toggleExpand('grid-cloth-common')">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 border border-white/10">IMG</div>
+                    <div><span class="text-[10px] text-gray-300 font-bold uppercase tracking-wider bg-white/10 px-2 py-1 rounded">Common Base</span>
+                    <h2 class="text-xl font-bold mt-1 tracking-tight">Navy Sweaters Poses</h2><p class="text-gray-400 text-sm">4 Types (4 poses total)</p></div>
+                </div><div class="drop-icon font-bold text-xl text-gray-500">+</div>
             </div>
-            <div id="grid-cloth-common" class="expand-grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"></div>
+            <div id="grid-cloth-common" class="expand-grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 pl-6 md:pl-24"></div>
 
-            <div class="album-cover glass rounded-xl p-8 mb-4 flex justify-between items-center line-rare" onclick="toggleExpand('grid-cloth-rare')">
-                <div><span class="text-[10px] text-gray-400 font-medium uppercase tracking-[0.2em]">Signature</span>
-                <h2 class="text-xl font-bold mt-2 tracking-tight">Hoodies & Green Sweater</h2></div>
-                <div class="drop-icon text-gray-500 font-light text-2xl">+</div>
+            <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center line-rare" onclick="toggleExpand('grid-cloth-rare')">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 bg-cyan-900/30 rounded-xl flex items-center justify-center text-xs text-cyan-400 border border-cyan-500/30">IMG</div>
+                    <div><span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider bg-cyan-500/20 px-2 py-1 rounded">Rare Halo</span>
+                    <h2 class="text-xl font-bold mt-1 tracking-tight">Hoodies & Green Sweater</h2><p class="text-gray-400 text-sm">10 Types (10 poses total)</p></div>
+                </div><div class="drop-icon font-bold text-xl text-gray-500">+</div>
             </div>
-            <div id="grid-cloth-rare" class="expand-grid grid-cols-2 md:grid-cols-5 gap-6 mb-16"></div>
+            <div id="grid-cloth-rare" class="expand-grid grid-cols-2 md:grid-cols-5 gap-4 mb-12 pl-6 md:pl-24 overflow-visible"></div>
         </div>
 
-        <div id="sec-ultra" class="section-container hidden">
-            <div class="album-cover glass rounded-xl p-8 mb-4 flex justify-between items-center line-ultra" onclick="toggleExpand('grid-ultra-heads')">
-                <div><span class="text-[10px] text-[#D4AF37] font-medium uppercase tracking-[0.2em]">Masterpiece</span>
-                <h2 class="text-2xl font-bold mt-2 tracking-tight text-gradient">Ultra Heads Collection</h2></div>
-                <div class="drop-icon text-gray-500 font-light text-2xl">+</div>
+        <div id="sec-ultra" class="section-container hidden relative z-10 p-0 overflow-visible">
+            <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center line-ultra relative z-10" onclick="toggleExpand('grid-ultra-heads')">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 bg-purple-900/30 rounded-xl flex items-center justify-center text-3xl border border-purple-500/30">👑</div>
+                    <div>
+                        <span class="text-[10px] text-[#D4AF37] font-medium uppercase tracking-wider bg-purple-500/10 px-2 py-1 rounded">Ultra Aura Level</span>
+                        <h2 class="text-2xl font-black mt-1 text-gradient">Ultra Heads Collection</h2>
+                        <p class="text-[#D4AF37] text-sm font-bold tracking-wider mt-1 pulse-text">22 Exclusive Types (Max 4~5 Supply Each)</p>
+                    </div>
+                </div><div class="drop-icon font-bold text-xl text-gray-500">+</div>
             </div>
-            <div id="grid-ultra-heads" class="expand-grid grid-cols-2 md:grid-cols-5 gap-6 mb-16"></div>
+            <div id="grid-ultra-heads" class="expand-grid grid-cols-2 md:grid-cols-5 gap-4 mb-12 pl-6 md:pl-24 overflow-visible"></div>
 
-            <div class="album-cover glass rounded-xl p-8 mb-4 flex justify-between items-center line-ultra" onclick="toggleExpand('grid-ultra-outfits')">
-                <div><span class="text-[10px] text-[#D4AF37] font-medium uppercase tracking-[0.2em]">Masterpiece</span>
-                <h2 class="text-2xl font-bold mt-2 tracking-tight text-gradient">Ultra Outfits Collection</h2></div>
-                <div class="drop-icon text-gray-500 font-light text-2xl">+</div>
+            <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center line-ultra relative z-10" onclick="toggleExpand('grid-ultra-outfits')">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 bg-purple-900/30 rounded-xl flex items-center justify-center text-3xl border border-purple-500/30">👘</div>
+                    <div>
+                        <span class="text-[10px] text-[#D4AF37] font-medium uppercase tracking-wider bg-purple-500/10 px-2 py-1 rounded">Ultra Aura Level</span>
+                        <h2 class="text-2xl font-black mt-1 text-gradient">Ultra Outfits Collection</h2>
+                        <p class="text-[#D4AF37] text-sm font-bold pulse-text">10 Exclusive Types (Limited Supply)</p>
+                    </div>
+                </div><div class="drop-icon font-bold text-xl text-gray-500">+</div>
             </div>
-            <div id="grid-ultra-outfits" class="expand-grid grid-cols-2 md:grid-cols-5 gap-6 mb-16"></div>
+            <div id="grid-ultra-outfits" class="expand-grid grid-cols-2 md:grid-cols-5 gap-4 mb-12 pl-6 md:pl-24 overflow-visible"></div>
         </div>
     </main>
 
-    <footer class="border-t border-white/5 py-12 px-6 flex flex-col items-center z-10 relative">
-        <div class="text-xs font-bold tracking-[0.2em] uppercase mb-4">Inner Juicy</div>
-        <div class="text-[10px] text-gray-600 tracking-widest uppercase">© 2026. All rights reserved.</div>
+    <section class="py-32 relative border-t border-white/5 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black"></div>
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-900 via-purple-900 to-black"></div>
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-4 flex flex-col items-center">
+            <h2 class="text-xs font-bold tracking-[0.4em] text-gray-500 mb-8 uppercase">Coming Soon: Season 2</h2>
+            <h3 class="text-2xl md:text-3xl text-gray-400 font-light tracking-widest mb-1 uppercase">Inner Juicy:</h3>
+            <h4 class="text-5xl md:text-8xl font-black text-gradient tracking-tight mb-8 drop-shadow-2xl">THE OVERFLOW</h4>
+            <p class="text-gray-500 font-light text-base md:text-xl">When the juice breaches the surface. A new form arises.</p>
+        </div>
+    </section>
+
+    <footer class="glass border-t-0 py-8 px-6 flex justify-between items-center z-10 relative">
+        <div class="text-sm text-gray-600">© 2026 Inner Juicy. All rights reserved. Masterpieces in Curation.</div>
     </footer>
 
     <script>
@@ -163,12 +187,12 @@
             return `${COLLECTION_URL}?search[stringTraits][0][name]=${traitType}&search[stringTraits][0][values][0]=${encodedValue}`;
         }
 
-        // 럭셔리 무드의 미니멀 오버레이
-        function getHoverOverlay(badgeLabel, linkUrl) {
+        // 미니멀 아웃라인 버튼 레이어
+        function getHoverOverlay(badgeLabel, badgeColorClass, linkUrl) {
             return `
-                <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span class="text-[10px] font-medium text-white/80 tracking-[0.1em] uppercase mb-4 text-center px-4">${badgeLabel}</span>
-                    <a href="${linkUrl}" target="_blank" onclick="event.stopPropagation()" class="luxury-btn px-5 py-2 text-[10px] tracking-widest uppercase">
+                <div class="absolute inset-0 bg-black/70 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="text-[10px] font-bold ${badgeColorClass} mb-4 text-center px-2 tracking-widest uppercase">${badgeLabel}</span>
+                    <a href="${linkUrl}" target="_blank" onclick="event.stopPropagation()" class="luxury-btn px-4 py-2 text-xs font-bold">
                         View Item
                     </a>
                 </div>
@@ -177,42 +201,42 @@
 
         // ================= 과일 Heads 데이터 =================
         const fruits = [
-            { id: 'apple', name: 'Apple' }, { id: 'banana', name: 'Banana' },
-            { id: 'strawberry', name: 'Strawberry' }, { id: 'kiwi', name: 'Kiwi' },
-            { id: 'lemon', name: 'Lemon' }, { id: 'melon', name: 'Melon' },
-            { id: 'blueberry', name: 'Blueberry' }, { id: 'peach', name: 'Peach' },
-            { id: 'watermelon', name: 'Watermelon' }, { id: 'orange', name: 'Orange' },
-            { id: 'pineapple', name: 'Pineapple' }
+            { id: 'apple', icon: '🍎', name: 'Apple' }, { id: 'banana', icon: '🍌', name: 'Banana' },
+            { id: 'strawberry', icon: '🍓', name: 'Strawberry' }, { id: 'kiwi', icon: '🥝', name: 'Kiwi' },
+            { id: 'lemon', icon: '🍋', name: 'Lemon' }, { id: 'melon', icon: '🍈', name: 'Melon' },
+            { id: 'blueberry', icon: '🫐', name: 'Blueberry' }, { id: 'peach', icon: '🍑', name: 'Peach' },
+            { id: 'watermelon', icon: '🍉', name: 'Watermelon' }, { id: 'orange', icon: '🍊', name: 'Orange' },
+            { id: 'pineapple', icon: '🍍', name: 'Pineapple' }
         ];
 
         const fruitContainer = document.getElementById('dynamic-fruits-container');
         fruits.forEach(f => {
-            const osLinkHeads = getOpenseaLink('fruit_head', f.name);
+            const osLinkHeads = getOpenseaLink('fruit_head', f.name); // Heads 탭 오픈씨 링크
             const html = `
-                <div class="album-cover glass rounded-xl p-8 mb-4 flex justify-between items-center line-common" onclick="toggleExpand('grid-${f.id}')">
-                    <div><h2 class="text-xl font-bold tracking-tight">${f.name} Collection</h2><p class="text-gray-500 text-xs tracking-widest uppercase mt-2">Full Lineup</p></div>
-                    <div class="drop-icon text-gray-500 font-light text-2xl">+</div>
+                <div class="album-cover glass rounded-2xl p-6 mb-4 flex justify-between items-center line-common" onclick="toggleExpand('grid-${f.id}')">
+                    <div class="flex items-center gap-6"><div class="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center text-2xl">${f.icon}</div>
+                    <div><h2 class="text-xl font-bold tracking-tight">${f.name} Collection</h2><p class="text-gray-400 text-sm">Common, Rare & Ultra Types</p></div></div><div class="drop-icon font-bold text-xl text-gray-500">+</div>
                 </div>
-                <div id="grid-${f.id}" class="expand-grid grid-cols-2 md:grid-cols-5 gap-6 mb-16">
-                    <div class="inner-item glass rounded-xl h-64 flex items-center justify-center p-4 group">
-                        <img src="./images/${f.id}-common.png" class="showroom-image shadow-base" onerror="this.style.display='none'">
-                        ${getHoverOverlay('Essential', osLinkHeads)}
+                <div id="grid-${f.id}" class="expand-grid grid-cols-2 md:grid-cols-5 gap-4 mb-12 pl-6 md:pl-24 overflow-visible">
+                    <div class="inner-item glass rounded-xl h-64 overflow-visible relative group border border-white/5 flex items-center justify-center p-2">
+                        <img src="./images/${f.id}-common.png" class="max-h-full object-contain shadow-base showroom-image">
+                        ${getHoverOverlay('Common Base', 'text-gray-300', osLinkHeads)}
                     </div>
-                    <div class="inner-item glass rounded-xl h-64 flex items-center justify-center p-4 group">
-                        <img src="./images/${f.id}-rare-headset.png" class="showroom-image shadow-base" onerror="this.style.display='none'">
-                        ${getHoverOverlay('Signature Headset', osLinkHeads)}
+                    <div class="inner-item glass rounded-xl h-64 overflow-visible relative group border border-white/5 flex items-center justify-center p-2 group-rare">
+                        <img src="./images/${f.id}-rare-headset.png" class="max-h-full object-contain shadow-base showroom-image">
+                        ${getHoverOverlay('Signature Headset', 'text-cyan-400', osLinkHeads)}
                     </div>
-                    <div class="inner-item glass rounded-xl h-64 flex items-center justify-center p-4 group">
-                        <img src="./images/${f.id}-rare-sunglasses.png" class="showroom-image shadow-base" onerror="this.style.display='none'">
-                        ${getHoverOverlay('Signature Sunglasses', osLinkHeads)}
+                    <div class="inner-item glass rounded-xl h-64 overflow-visible relative group border border-white/5 flex items-center justify-center p-2 group-rare">
+                        <img src="./images/${f.id}-rare-sunglasses.png" class="max-h-full object-contain shadow-base showroom-image">
+                        ${getHoverOverlay('Signature Sunglasses', 'text-cyan-400', osLinkHeads)}
                     </div>
-                    <div class="inner-item glass rounded-xl h-64 flex items-center justify-center p-4 group border-l border-[#D4AF37]/30">
-                        <img src="./images/${f.id}-ultra-1.png" class="showroom-image shadow-ultra" onerror="this.style.display='none'">
-                        ${getHoverOverlay('Masterpiece I', osLinkHeads)}
+                    <div class="inner-item glass ultra-item rounded-xl h-64 overflow-visible relative group border border-white/5 flex items-center justify-center p-2">
+                        <img src="./images/${f.id}-ultra-1.png" class="max-h-full object-contain shadow-ultra showroom-image">
+                        ${getHoverOverlay('Masterpiece A', 'text-[#D4AF37]', osLinkHeads)}
                     </div>
-                    <div class="inner-item glass rounded-xl h-64 flex items-center justify-center p-4 group border-l border-[#D4AF37]/30">
-                        <img src="./images/${f.id}-ultra-2.png" class="showroom-image shadow-ultra" onerror="this.style.display='none'">
-                        ${getHoverOverlay('Masterpiece II', osLinkHeads)}
+                    <div class="inner-item glass ultra-item rounded-xl h-64 overflow-visible relative group border border-white/5 flex items-center justify-center p-2">
+                        <img src="./images/${f.id}-ultra-2.png" class="max-h-full object-contain shadow-ultra showroom-image">
+                        ${getHoverOverlay('Masterpiece B', 'text-[#D4AF37]', osLinkHeads)}
                     </div>
                 </div>
             `;
@@ -232,14 +256,13 @@
             const container = document.getElementById(containerId);
             let html = '';
             clothData.forEach(item => {
-                const osLink = getOpenseaLink('outfits', item.trait);
+                const osLink = getOpenseaLink('outfits', item.trait); // JSON 속성명에 맞춤
                 item.files.forEach(file => {
-                    const poseName = file.split(' pose')[1]?.split('#')[0] || '';
-                    const badgeText = `${item.trait} ${poseName}`;
+                    const badgeText = `${item.trait} (${file.split(' pose')[1]?.split('#')[0] || ''})`;
                     html += `
-                        <div class="inner-item glass rounded-xl h-64 flex items-center justify-center p-4 group">
-                            <img src="./images/${file}" class="showroom-image ${shadowClass}" onerror="this.style.display='none'">
-                            ${getHoverOverlay(badgeText, osLink)}
+                        <div class="inner-item glass rounded-xl h-64 overflow-visible relative group border border-white/5 flex items-center justify-center p-2 ${containerId === 'grid-cloth-common' ? '' : 'group-rare'}">
+                            <img src="./images/${file}" class="max-h-full object-contain ${shadowClass} showroom-image">
+                            ${getHoverOverlay(badgeText, containerId === 'grid-cloth-common' ? 'text-gray-300' : 'text-cyan-400', osLink)}
                         </div>`;
                 });
             });
@@ -249,7 +272,7 @@
         renderOutfitsGrid('grid-cloth-common', clothCommon, 'shadow-base');
         renderOutfitsGrid('grid-cloth-rare', clothRare, 'shadow-base');
 
-        // ================= Ultra Archive =================
+        // ================= Ultra Archive 데이터 =================
         const ultraHeadsData = ["Amber", "Neon", "Void", "Molten", "Obsidian", "Aurora", "Sunset", "Ice", "Galaxy", "Toxic", "Darkmatter", "Chroma", "Electric", "Crystal", "Solar", "Diamond", "Plasma"];
         const ultraOutfitsData = ["Dragon Armor", "Jungle Vest", "Steampunk Vest", "Pharaoh", "Silver Spiked Punk", "Nebula Hood", "Gold Astronaut"];
 
@@ -257,10 +280,12 @@
             const headsContainer = document.getElementById('grid-ultra-heads');
             let headsHtml = '';
             ultraHeadsData.forEach(name => {
+                const fileName = `ultra_head_${name.toLowerCase()}.png`; // 예: ultra_head_amber.png
+                const osLink = getOpenseaLink('ultra_head', name); // JSON 속성명에 맞춤 (ultra_head)
                 headsHtml += `
-                    <div class="inner-item glass rounded-xl h-64 flex items-center justify-center p-4 group border-l border-[#D4AF37]/20">
-                        <img src="./images/ultra_head_${name.toLowerCase()}.png" class="showroom-image shadow-ultra" onerror="this.style.display='none'">
-                        ${getHoverOverlay(name, getOpenseaLink('ultra_head', name))}
+                    <div class="inner-item glass ultra-item rounded-xl h-64 overflow-visible relative group border border-white/5 flex items-center justify-center p-2">
+                        <img src="./images/${fileName}" class="max-h-full object-contain shadow-ultra showroom-image">
+                        ${getHoverOverlay(name, 'text-[#D4AF37]', osLink)}
                     </div>`;
             });
             headsContainer.innerHTML = headsHtml;
@@ -268,39 +293,38 @@
             const outfitsContainer = document.getElementById('grid-ultra-outfits');
             let outfitsHtml = '';
             ultraOutfitsData.forEach(name => {
+                const fileName = `outfit_ultra_${name.toLowerCase().replace(/ /g, '_')}.png`; // 예: outfit_ultra_gold_astronaut.png
+                const osLink = getOpenseaLink('outfit', name); // JSON 속성명에 맞춤 (outfit)
                 outfitsHtml += `
-                    <div class="inner-item glass rounded-xl h-64 flex items-center justify-center p-4 group border-l border-[#D4AF37]/20">
-                        <img src="./images/outfit_ultra_${name.toLowerCase().replace(/ /g, '_')}.png" class="showroom-image shadow-ultra" onerror="this.style.display='none'">
-                        ${getHoverOverlay(name, getOpenseaLink('outfit', name))}
+                    <div class="inner-item glass ultra-item rounded-xl h-64 overflow-visible relative group border border-white/5 flex items-center justify-center p-2">
+                        <img src="./images/${fileName}" class="max-h-full object-contain shadow-ultra showroom-image">
+                        ${getHoverOverlay(name, 'text-[#D4AF37]', osLink)}
                     </div>`;
             });
             outfitsContainer.innerHTML = outfitsHtml;
         }
+
         renderUltraArchiveSection();
 
-        // ================= 탭 & 아코디언 =================
+        // ================= UI 및 탭 기능 =================
         function switchTab(tabName) {
-            const tabs = ['heads', 'outfits', 'ultra'];
-            tabs.forEach(tab => {
-                const btn = document.getElementById(`btn-${tab}`);
-                const sec = document.getElementById(`sec-${tab}`);
-                
-                if (tab === tabName) {
-                    btn.classList.replace('border-transparent', tab === 'ultra' ? 'border-[#D4AF37]' : 'border-white');
-                    btn.classList.replace('text-gray-500', tab === 'ultra' ? 'text-[#D4AF37]' : 'text-white');
-                    if(tab === 'ultra') btn.classList.replace('opacity-60', 'opacity-100');
-                    sec.style.display = 'block';
-                } else {
-                    btn.classList.replace(tab === 'ultra' ? 'border-[#D4AF37]' : 'border-white', 'border-transparent');
-                    btn.classList.replace(tab === 'ultra' ? 'text-[#D4AF37]' : 'text-white', tab === 'ultra' ? 'text-[#D4AF37]' : 'text-gray-500');
-                    if(tab === 'ultra') btn.classList.replace('opacity-100', 'opacity-60');
-                    sec.style.display = 'none';
-                }
-            });
+            const btnHeads = document.getElementById('btn-heads');
+            const btnOutfits = document.getElementById('btn-outfits');
+            const btnUltra = document.getElementById('btn-ultra');
+            
+            btnHeads.className = 'tab-btn px-8 py-3 rounded-full glass font-bold tracking-wide transition-all ' + (tabName === 'heads' ? 'bg-white/10 text-white' : 'hover:bg-white/5 text-gray-400');
+            btnOutfits.className = 'tab-btn px-8 py-3 rounded-full glass font-bold tracking-wide transition-all ' + (tabName === 'outfits' ? 'bg-white/10 text-white' : 'hover:bg-white/5 text-gray-400');
+            btnUltra.className = 'tab-btn px-8 py-3 rounded-full glass font-bold tracking-wide transition-all ' + (tabName === 'ultra' ? 'bg-[#D4AF37]/10 text-[#D4AF37]' : 'hover:bg-white/5 text-purple-500/70');
+            
+            document.getElementById('sec-heads').style.display = tabName === 'heads' ? 'block' : 'none';
+            document.getElementById('sec-outfits').style.display = tabName === 'outfits' ? 'block' : 'none';
+            document.getElementById('sec-ultra').style.display = tabName === 'ultra' ? 'block' : 'none';
+            
             document.querySelectorAll('.expand-grid').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.drop-icon').forEach(el => el.style.transform = 'rotate(0deg)');
         }
 
+        // Accordion 기능
         function toggleExpand(gridId) {
             const grid = document.getElementById(gridId);
             const icon = grid.previousElementSibling.querySelector('.drop-icon');
