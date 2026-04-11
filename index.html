@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* 배경 블러 효과 포인트 */
+        /* 배경 블러 효과 */
         .bg-glow {
             position: fixed;
             border-radius: 50%;
@@ -36,7 +36,7 @@
             opacity: 0.4;
         }
 
-        /* 레퍼런스 스타일 완벽 반영 카드 */
+        /* 베이스 카드 */
         .nft-card {
             position: relative;
             border-radius: 32px;
@@ -62,7 +62,7 @@
             transform: translateX(-50%) translateY(-5px);
         }
 
-        /* 플로팅 글래스 뱃지 */
+        /* 글래스 뱃지 */
         .glass-badge {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(12px);
@@ -95,12 +95,9 @@
         }
         .glass-circle:hover { background: rgba(255, 255, 255, 0.3); }
 
-        /* 하단 그라데이션 오버레이 및 정보 영역 */
         .card-bottom-info {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             padding: 50px 20px 24px 20px;
             background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
             z-index: 10;
@@ -109,47 +106,33 @@
             gap: 12px;
         }
 
-        /* 하얀색 액션 버튼 (레퍼런스의 Place Bid 버튼) */
         .action-btn {
-            font-weight: 800;
-            font-size: 13px;
-            padding: 12px 20px;
-            border-radius: 99px;
-            text-align: center;
-            transition: all 0.3s;
-            white-space: nowrap;
+            font-weight: 800; font-size: 13px; padding: 12px 20px; border-radius: 99px;
+            text-align: center; transition: all 0.3s; white-space: nowrap;
         }
 
-        /* 카테고리 탭 (레퍼런스 스타일) */
+        /* 탭UI */
         .pill-tab {
-            padding: 10px 20px;
-            border-radius: 99px;
-            font-size: 13px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            cursor: pointer;
+            padding: 10px 20px; border-radius: 99px; font-size: 13px; font-weight: 700;
+            transition: all 0.3s ease; white-space: nowrap; cursor: pointer;
         }
         .tab-active { background: white; color: #16181D; }
         .tab-inactive { background: rgba(255, 255, 255, 0.08); color: rgba(255,255,255,0.6); }
         .tab-inactive:hover { background: rgba(255, 255, 255, 0.15); color: white; }
 
-        /* 아코디언 */
         .expand-grid { display: none; opacity: 0; transform: translateY(-10px); transition: 0.4s ease; }
         .expand-grid.active { display: grid; opacity: 1; transform: translateY(0); }
-        
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* 등급별 럭셔리 스타일링 시스템 */
-        /* 1. Common (파스텔 & 화이트) */
-        .card-common {
-            border-color: rgba(255, 255, 255, 0.1);
-        }
+        /* ==========================================
+           등급별 럭셔리 스타일링 
+           ========================================== */
+           
+        /* 1. Common (명칭은 Rare Base로 격상, 시각적으로는 파스텔톤 유지) */
+        .card-common { border-color: rgba(255, 255, 255, 0.1); }
         .card-common:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 40px -10px rgba(255, 255, 255, 0.1);
-            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 20px 40px -10px rgba(255, 255, 255, 0.1); transform: translateY(-8px);
         }
         .img-bg-common { background: linear-gradient(160deg, #D6B7C5, #9A8CA5); }
         .badge-common { color: #fff; }
@@ -157,14 +140,10 @@
         .btn-common { background: rgba(255, 255, 255, 0.9); color: #16181D; }
         .btn-common:hover { background: #ffffff; transform: scale(1.05); }
 
-        /* 2. Rare (시안 네온 글로우) */
-        .card-rare {
-            border-color: rgba(156, 226, 232, 0.2);
-        }
+        /* 2. Rare (강렬한 시안 네온) */
+        .card-rare { border-color: rgba(156, 226, 232, 0.2); }
         .card-rare:hover {
-            border-color: rgba(156, 226, 232, 0.7);
-            box-shadow: 0 25px 50px -12px rgba(156, 226, 232, 0.3);
-            transform: translateY(-8px);
+            border-color: rgba(156, 226, 232, 0.7); box-shadow: 0 25px 50px -12px rgba(156, 226, 232, 0.3); transform: translateY(-8px);
         }
         .img-bg-rare { background: linear-gradient(160deg, #1E2D3D, #111A24); }
         .badge-rare { color: #9CE2E8; }
@@ -172,42 +151,27 @@
         .btn-rare { background: rgba(156, 226, 232, 0.9); color: #16181D; }
         .btn-rare:hover { background: #A5F3FC; transform: scale(1.05); box-shadow: 0 0 15px rgba(156, 226, 232, 0.5); }
 
-        /* 3. Ultra (마스터피스 리얼 골드 + 빛 반사 애니메이션) */
-        .card-ultra {
-            border-color: rgba(212, 175, 55, 0.4);
-        }
+        /* 3. Ultra (마스터피스 리얼 골드 이펙트) */
+        .card-ultra { border-color: rgba(212, 175, 55, 0.4); }
         .card-ultra::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 100%;
-            height: 100%;
+            content: ''; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,235,150,0.2), transparent);
-            transform: skewX(-25deg);
-            transition: 0.7s;
-            z-index: 20;
-            pointer-events: none;
+            transform: skewX(-25deg); transition: 0.7s; z-index: 20; pointer-events: none;
         }
         .card-ultra:hover {
             border-color: rgba(255, 215, 0, 1);
             box-shadow: 0 30px 60px -10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.3) inset;
             transform: translateY(-10px);
         }
-        .card-ultra:hover::before {
-            left: 150%;
-        }
+        .card-ultra:hover::before { left: 150%; }
         .img-bg-ultra { background: linear-gradient(160deg, #2A2416, #0D0B08); }
         .badge-ultra { color: #FAD982; }
         .circle-ultra { color: #FAD982; }
         .btn-ultra { background: linear-gradient(90deg, #D4AF37, #FAD982); color: #16181D; border: none; }
         .btn-ultra:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); filter: brightness(1.1); }
         
-        /* 텍스트 그라데이션 */
         .text-gradient-ultra {
-            background: linear-gradient(to right, #FAD982, #D4AF37);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: linear-gradient(to right, #FAD982, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
@@ -245,11 +209,6 @@
     </div>
 
     <main class="px-6 max-w-screen-xl mx-auto pb-40 relative z-10">
-        <div class="flex justify-between items-end mb-6 px-1">
-            <h2 class="text-xl font-bold tracking-tight">All Collection</h2>
-            <span class="text-[11px] font-bold text-gray-400 cursor-pointer hover:text-white transition uppercase tracking-wider">See All</span>
-        </div>
-
         <div id="sec-heads" class="section-container">
             <div id="dynamic-fruits-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
         </div>
@@ -259,10 +218,10 @@
                 <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-common')">
                     <div class="flex items-center gap-5">
                         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#D6B7C5] to-[#9A8CA5] flex items-center justify-center p-1 relative overflow-hidden">
-                            <img src="./images/navy-sweater-cross-pose-1.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
+                            <img src="./images/green-sweater-1.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
                         </div>
                         <div>
-                            <h3 class="text-xl font-black text-white group-hover:text-white transition-colors">Common Outfits</h3>
+                            <h3 class="text-xl font-black text-white group-hover:text-white transition-colors">COMMON OUTFITS</h3>
                             <p class="text-[11px] text-gray-400 uppercase tracking-widest font-bold mt-1">Essential Tier</p>
                         </div>
                     </div>
@@ -275,10 +234,10 @@
                 <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-rare')">
                     <div class="flex items-center gap-5">
                         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1E2D3D] to-[#111A24] border border-[#9CE2E8]/30 flex items-center justify-center p-1 relative overflow-hidden">
-                            <img src="./images/astronaut-suit-pose-1.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
+                            <img src="./images/astronaut-suit.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
                         </div>
                         <div>
-                            <h3 class="text-xl font-black text-white group-hover:text-[#9CE2E8] transition-colors">Rare Outfits</h3>
+                            <h3 class="text-xl font-black text-white group-hover:text-[#9CE2E8] transition-colors">RARE OUTFITS</h3>
                             <p class="text-[11px] text-[#9CE2E8] uppercase tracking-widest font-bold mt-1">Limited Edition</p>
                         </div>
                     </div>
@@ -307,7 +266,6 @@
 
     <script>
         const COLLECTION_URL = "https://opensea.io/collection/inner-juicy";
-
         function getOpenseaLink(trait, value) {
             return `${COLLECTION_URL}?search[stringTraits][0][name]=${trait}&search[stringTraits][0][values][0]=${encodeURIComponent(value)}`;
         }
@@ -315,7 +273,7 @@
         const ethBadgeSvg = `<svg width="12" height="16" viewBox="0 0 320 512" fill="currentColor"><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8z"/></svg>`;
         const heartSvg = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
 
-        // 등급별 시각적 차이를 극대화하는 설정 시스템
+        // 등급별 설정 (기본 헤드는 Rare Base로 격상)
         const tierConfig = {
             common: {
                 cardClass: 'card-common', bgClass: 'img-bg-common', badgeClass: 'badge-common', 
@@ -334,13 +292,11 @@
             }
         };
 
-        // 레퍼런스 스타일의 등급별 카드 생성 함수
         function createCardHTML(tierKey, badgeText, imgSrc, title, subtitle, link) {
             const t = tierConfig[tierKey];
             return `
                 <div class="nft-card ${t.cardClass}">
                     <div class="absolute inset-0 ${t.bgClass}"></div>
-                    
                     <div class="glass-badge ${t.badgeClass}">
                         ${ethBadgeSvg}
                         <div class="flex flex-col leading-none text-left">
@@ -348,10 +304,8 @@
                             <span class="tracking-wide">${badgeText}</span>
                         </div>
                     </div>
-                    
                     <div class="glass-circle ${t.circleClass}">${heartSvg}</div>
-                    
-                    <img src="${imgSrc}" class="nft-image">
+                    <img src="${imgSrc}" class="nft-image" onerror="this.src='https://via.placeholder.com/300x400/2A2D36/FFFFFF?text=Image+Missing'">
                     
                     <div class="card-bottom-info">
                         <div>
@@ -372,25 +326,30 @@
             `;
         }
 
-        // Heads 데이터 (기본 유지하되 레퍼런스 스타일로 묘사)
+        // ==========================================
+        // 1. HEADS 데이터 세팅 (울트라 네이밍 매핑 완료)
+        // ==========================================
         const fruits = [
-            { id: 'apple', name: 'Apple' }, { id: 'banana', name: 'Banana' },
-            { id: 'strawberry', name: 'Strawberry' }, { id: 'kiwi', name: 'Kiwi' },
-            { id: 'lemon', name: 'Lemon' }, { id: 'melon', name: 'Melon' },
-            { id: 'blueberry', name: 'Blueberry' }, { id: 'peach', name: 'Peach' },
-            { id: 'watermelon', name: 'Watermelon' }, { id: 'orange', name: 'Orange' },
-            { id: 'pineapple', name: 'Pineapple' }
+            { id: 'apple', name: 'Apple', u1: 'Amber', u2: 'Neon' },
+            { id: 'banana', name: 'Banana', u1: 'Void', u2: 'Molten' },
+            { id: 'strawberry', name: 'Strawberry', u1: 'Obsidian', u2: 'Aurora' },
+            { id: 'kiwi', name: 'Kiwi', u1: 'Sunset', u2: 'Ice' },
+            { id: 'lemon', name: 'Lemon', u1: 'Galaxy', u2: 'Toxic' },
+            { id: 'melon', name: 'Melon', u1: 'Darkmatter', u2: 'Chroma' },
+            { id: 'blueberry', name: 'Blueberry', u1: 'Electric', u2: 'Crystal' },
+            { id: 'peach', name: 'Peach', u1: 'Solar', u2: 'Diamond' },
+            { id: 'watermelon', name: 'Watermelon', u1: 'Plasma', u2: 'Quantum' },
+            { id: 'orange', name: 'Orange', u1: 'Nebula', u2: 'Cosmic' },
+            { id: 'pineapple', name: 'Pineapple', u1: 'Zenith', u2: 'Apex' }
         ];
 
-        // Heads 렌더링
         const fruitContainer = document.getElementById('dynamic-fruits-container');
         fruits.forEach(f => {
-            // 아코디언 토글 (레퍼런스 스타일 배너)
             fruitContainer.innerHTML += `
                 <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-${f.id}')">
                     <div class="flex items-center gap-5">
                         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#D6B7C5] to-[#9A8CA5] flex items-center justify-center p-1 relative overflow-hidden">
-                            <img src="./images/${f.id}-common.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
+                            <img src="./images/${f.id}-common.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500" onerror="this.src='https://via.placeholder.com/100'">
                         </div>
                         <div>
                             <h3 class="text-xl font-black text-white group-hover:text-pink-300 transition-colors">${f.name} Archive</h3>
@@ -402,94 +361,71 @@
                     </div>
                 </div>
                 <div id="grid-${f.id}" class="expand-grid col-span-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 pt-2">
-                    ${renderHeadItems(f)}
+                    ${createCardHTML('common', 'Rare Base', `./images/${f.id}-common.png`, `${f.name} Core`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
+                    ${createCardHTML('rare', 'Rare Head', `./images/${f.id}-rare-headset.png`, `${f.name} Audio`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
+                    ${createCardHTML('rare', 'Rare Head', `./images/${f.id}-rare-sunglasses.png`, `${f.name} Shades`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
                 </div>
             `;
         });
 
-        function renderHeadItems(f) {
-            const os = getOpenseaLink('fruit_head', f.name);
-            // 파일명 소문자 + 하이픈 적용
-            return `
-                ${createCardHTML('common', 'Common', `./images/${f.id}-common.png`, `${f.name} Base`, 'Inner Juicy', os)}
-                ${createCardHTML('rare', 'Rare', `./images/${f.id}-rare-headset.png`, `${f.name} Audio`, 'Inner Juicy', os)}
-                ${createCardHTML('rare', 'Rare', `./images/${f.id}-rare-sunglasses.png`, `${f.name} Shades`, 'Inner Juicy', os)}
-                ${createCardHTML('ultra', 'Ultra', `./images/${f.id}-ultra-1.png`, `${f.name} Elite A`, 'Inner Juicy', os)}
-                ${createCardHTML('ultra', 'Ultra', `./images/${f.id}-ultra-2.png`, `${f.name} Elite B`, 'Inner Juicy', os)}
-            `;
-        }
-
-        // Outfits 데이터 (이미지 파일명 기반 - 소문자 + 하이픈 적용)
+        // ==========================================
+        // 2. OUTFITS 데이터 세팅 (소문자 하이픈 적용)
+        // ==========================================
         const commonFiles = [
-            {t:'Navy Sweater', f:'navy-sweater-cross-pose-1.png'},
-            {t:'Navy Sweater', f:'navy-sweater-cross-pose-2.png'},
-            {t:'Navy Sweater', f:'navy-sweater-cross-pose-3.png'},
-            {t:'Navy Sweater', f:'navy-sweater-handshake-pose.png'}
+            {t:'Green Sweater 1', f:'green-sweater-1.png'},
+            {t:'Green Sweater 2', f:'green-sweater-2.png'},
+            {t:'Green Sweater 3', f:'green-sweater-3.png'},
+            {t:'Green Sweater 4', f:'green-sweater-4.png'},
+            {t:'Hoodie 1', f:'hoodie-1.png'},
+            {t:'Hoodie 2', f:'hoodie-2.png'},
+            {t:'Navy Sweater 1', f:'navy-sweater-1.png'},
+            {t:'Navy Sweater 2', f:'navy-sweater-2.png'}
         ];
         const rareFiles = [
-            {t:'Astronaut Suit', f:'astronaut-suit-pose-1.png'},
-            {t:'Hoodie', f:'hoodie-handshake-pose-1.png'}, 
-            {t:'Leather Jacket', f:'leather-jacket-candy-pose.png'},
-            {t:'Green Sweater', f:'green-sweater-cross-pose.png'}
-        ];
-        // 울트라 아웃핏 데이터 추가 (예시 데이터)
-        const ultraFiles = [
-            {t:'Dragon Armor', f:'dragon-armor.png'},
-            {t:'Cyberpunk Techwear', f:'cyberpunk-techwear.png'},
-            {t:'Pharaoh Robe', f:'pharaoh-robe.png'}
+            {t:'Astronaut Suit', f:'astronaut-suit.png'},
+            {t:'Leather Jacket', f:'leather-jacket.png'},
+            {t:'Steampunk Vest', f:'steampunk-vest.png'}
         ];
 
-        // Outfits 렌더링 함수 (깃허브 소문자+하이픈 파일명 적용)
-        function renderOutfits() {
-            // 1. Common Outfits (이미지 레퍼런스 유지)
-            const commonGrid = document.getElementById('grid-cloth-common');
-            commonFiles.forEach(item => {
-                commonGrid.innerHTML += createCardHTML('common', 'Essential', `./images/${item.f}`, item.t, 'Common Tier', getOpenseaLink('outfits', item.t));
-            });
+        const commonGrid = document.getElementById('grid-cloth-common');
+        commonFiles.forEach(item => {
+            commonGrid.innerHTML += createCardHTML('common', 'Essential', `./images/${item.f}`, item.t, 'Common Tier', getOpenseaLink('outfits', item.t));
+        });
 
-            // 2. Rare Outfits (더 힙하고 고급지게)
-            const rareGrid = document.getElementById('grid-cloth-rare');
-            rareFiles.forEach(item => {
-                rareGrid.innerHTML += createCardHTML('rare', 'Limited', `./images/${item.f}`, item.t, 'Rare Tier', getOpenseaLink('outfits', item.t));
-            });
+        const rareGrid = document.getElementById('grid-cloth-rare');
+        rareFiles.forEach(item => {
+            rareGrid.innerHTML += createCardHTML('rare', 'Limited', `./images/${item.f}`, item.t, 'Rare Tier', getOpenseaLink('outfits', item.t));
+        });
 
-            // 3. Ultra Outfits (가장 강렬한 시각적 차이)
-            const secOutfits = document.getElementById('sec-outfits');
-            secOutfits.innerHTML += `
-                <div class="flex items-center gap-3 mb-6 px-2 col-span-full mt-10">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#FAD982"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
-                    <h3 class="text-2xl font-black text-gradient-ultra tracking-tight">Ultra Outfits</h3>
-                </div>
-                <div id="grid-cloth-ultra" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 col-span-full pt-2"></div>
-            `;
-            const ultraGrid = document.getElementById('grid-cloth-ultra');
-            ultraFiles.forEach(item => {
-                ultraGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${item.f}`, item.t, 'Ultra Tier', getOpenseaLink('outfits', item.t));
-            });
-        }
-        renderOutfits();
+        // ==========================================
+        // 3. ULTRA 통합 렌더링 (헤드 + 아웃핏)
+        // ==========================================
+        const uhGrid = document.getElementById('grid-ultra-heads');
+        fruits.forEach(f => {
+            // 파일명은 과일-ultra-1.png, 화면 표기는 u1, u2 고유 네이밍
+            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-1.png`, f.u1, 'Ultra Head', getOpenseaLink('ultra_head', f.u1));
+            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-2.png`, f.u2, 'Ultra Head', getOpenseaLink('ultra_head', f.u2));
+        });
 
-        // Ultra Archive 데이터 (네이밍 정확히 포함)
-        const ultraHeads = ["Amber", "Neon", "Void", "Molten", "Obsidian", "Aurora", "Sunset", "Ice", "Galaxy", "Toxic", "Darkmatter", "Chroma", "Electric", "Crystal", "Solar", "Diamond", "Plasma"];
-        const ultraOutfits = ["Dragon Armor", "Jungle Vest", "Steampunk Vest", "Pharaoh", "Silver Spiked Punk", "Nebula Hood", "Gold Astronaut"];
+        const ultraOutfitsData = [
+            {t: 'Dragon Armor', f: 'outfit-dragon-armor.png'},
+            {t: 'Jungle Vest', f: 'outfit-jungle-vest.png'},
+            {t: 'Steampunk Vest', f: 'outfit-steampunk-vest.png'},
+            {t: 'Cyberpunk Jacket', f: 'outfit-cyberpunk-jacket.png'},
+            {t: 'Pharaoh', f: 'outfit-pharaoh.png'},
+            {t: 'Gold Astronaut', f: 'outfit-gold-astronaut.png'},
+            {t: 'Royal Robe', f: 'outfit-royal-robe.png'},
+            {t: 'Nebula Hood', f: 'outfit-nebula-hood.png'},
+            {t: 'Crystal Mage', f: 'outfit-crystal-mage.png'},
+            {t: 'Silver Spiked Punk', f: 'outfit-silver-spiked-punk.png'}
+        ];
 
-        // Ultra 렌더링 함수 (소문자 + 하이픈 파일명 적용)
-        function renderUltra() {
-            const uhGrid = document.getElementById('grid-ultra-heads');
-            ultraHeads.forEach(name => {
-                const lowerName = name.toLowerCase(); // 소문자 변환
-                uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/ultra_head_${lowerName}.png`, name, 'Ultra Head', getOpenseaLink('ultra_head', name));
-            });
+        const uoGrid = document.getElementById('grid-ultra-outfits');
+        ultraOutfitsData.forEach(item => {
+            uoGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${item.f}`, item.t, 'Ultra Outfit', getOpenseaLink('outfit', item.t));
+        });
 
-            const uoGrid = document.getElementById('grid-ultra-outfits');
-            ultraOutfits.forEach(name => {
-                const lowerHyphenName = name.toLowerCase().replace(/ /g, '-'); // 소문자 + 하이픈 변환
-                uoGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/outfit_ultra_${lowerHyphenName}.png`, name, 'Ultra Outfit', getOpenseaLink('outfit', name));
-            });
-        }
-        renderUltra();
-
-        // 탭 전환 로직
+        // 탭 및 확장 UI 로직
         function switchTab(tab) {
             document.querySelectorAll('.section-container').forEach(s => s.classList.add('hidden'));
             document.getElementById(`sec-${tab}`).classList.remove('hidden');
@@ -504,12 +440,9 @@
             activeBtn.classList.add('tab-active');
         }
 
-        // 아코디언 로직
         function toggleExpand(id) {
             const el = document.getElementById(id);
             el.classList.toggle('active');
-            
-            // 화살표 회전 애니메이션
             const svg = event.currentTarget.querySelector('svg');
             if (el.classList.contains('active')) {
                 svg.style.transform = 'rotate(180deg)';
