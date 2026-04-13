@@ -48,19 +48,22 @@
         .card-border-ultra { border-color: #D4AF37; }
         .card-border-ultra:hover { border-color: #FAD982; box-shadow: 0 10px 30px -10px rgba(212,175,55,0.5); }
 
-        /* 메인 에셋 이미지 positioning */
+        /* ==========================================
+           🚨 이미지 Positioning (옷 크기 1.75배 업그레이드 & 아랫단 정렬)
+           ========================================== */
         .nft-image {
             position: absolute; left: 50%; transform: translateX(-50%);
             object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        /* 기본적으로 에셋을 카드 중앙에 띄움 */
-        .nft-card:not(.outfit-card) .nft-image { bottom: 120px; height: 200px; }
-        /* 🚨 옷 오브젝트는 더 위로 올려 가운데 뜨게 수정 */
-        .outfit-card .nft-image { top: 60px; height: 160px; }
         
+        /* 1. 헤드(머리) 전용 사이즈 및 정렬 */
+        .nft-card:not(.outfit-card) .nft-image { bottom: 120px; height: 200px; width: 90%; }
         .nft-card:not(.outfit-card):hover .nft-image { height: 210px; bottom: 125px; }
-        .outfit-card:hover .nft-image { height: 170px; top: 55px; }
+
+        /* 2. 옷(아웃핏) 전용 사이즈 (1.75배 확대 및 하단 베이스 라인 일치) */
+        .outfit-card .nft-image { bottom: 120px; height: 280px; width: 90%; } 
+        .outfit-card:hover .nft-image { height: 290px; bottom: 125px; }
 
         /* 플로팅 글래스 뱃지 */
         .glass-badge {
@@ -87,7 +90,6 @@
             padding: 50px 20px 24px 20px;
             z-index: 10;
         }
-        /* 🚨 울트라 텍스트 오버레이는 더 진하고 골드 틴트를 가지게 수정 */
         .nft-card.ultra-card .card-bottom-info {
             background: linear-gradient(to top, rgba(21, 23, 29, 0.98) 0%, rgba(26, 29, 36, 0.95) 50%, transparent 100%);
         }
@@ -134,7 +136,7 @@
     <div class="bg-glow-pink"></div>
     <div class="bg-glow-cyan"></div>
 
-    <header class="mb-10 flex justify-between items-center z-50 relative">
+    <header class="mb-10 max-w-screen-xl mx-auto flex justify-between items-center z-50 relative">
         <div class="flex items-center gap-3">
             <img src="https://i.pravatar.cc/100?img=47" class="w-12 h-12 rounded-full border-2 border-white/10 object-cover" alt="Profile">
             <div>
@@ -147,14 +149,14 @@
         </div>
     </header>
 
-    <div class="mb-8 relative z-40">
+    <div class="mb-8 max-w-screen-xl mx-auto relative z-40">
         <div class="bg-nav-bg rounded-full py-4 px-6 flex items-center gap-3 border border-white/5">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="text" placeholder="Search NFT or artist name..." class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-500 font-medium">
         </div>
     </div>
 
-    <div class="mb-8 flex gap-3 overflow-x-auto no-scrollbar z-40 relative">
+    <div class="mb-8 max-w-screen-xl mx-auto flex gap-3 overflow-x-auto no-scrollbar z-40 relative">
         <div class="pill-tab tab-active" id="btn-heads" onclick="switchTab('heads')">All Heads</div>
         <div class="pill-tab tab-inactive" id="btn-outfits" onclick="switchTab('outfits')">Outfits</div>
         <div class="pill-tab tab-inactive flex items-center gap-1" id="btn-ultra" onclick="switchTab('ultra')">
@@ -163,7 +165,7 @@
         </div>
     </div>
 
-    <main class="relative z-10 pb-40">
+    <main class="relative z-10 pb-40 max-w-screen-xl mx-auto">
         <div class="flex justify-between items-end mb-6 px-1">
             <h2 class="text-xl font-bold tracking-tight">All Collection</h2>
             <span class="text-[11px] font-bold text-gray-400 cursor-pointer hover:text-white transition uppercase tracking-wider">See All</span>
@@ -207,10 +209,14 @@
         // 등급별 설정
         const tierConfig = {
             common: {
-                badgeClass: 'badge-common', tierName: 'Common', priceIconColor: 'white', 
+                badgeClass: 'badge-common', tierName: 'Common & Rare Base', priceIconColor: 'white', 
                 bidText: 'View Item', bidClass: 'glass-btn', borderClass: 'card-border-common'
             },
             rare: {
+                badgeClass: 'badge-rare', tierName: 'Rare Head', titleColor: '#9CE2E8', 
+                priceIconColor: '#9CE2E8', bidText: 'Place Bid', bidClass: 'glass-btn', borderClass: 'card-border-rare'
+            },
+            outfitRare: { // 옷 전용 레어 뱃지 텍스트
                 badgeClass: 'badge-rare', tierName: 'Limited', titleColor: '#9CE2E8', 
                 priceIconColor: '#9CE2E8', bidText: 'Place Bid', bidClass: 'glass-btn', borderClass: 'card-border-rare'
             },
@@ -223,14 +229,16 @@
         // 레퍼런스 스타일 카드 생성 함수
         function createCardHTML(config) {
             const { tier, imgSrc, title, subtitle, link, fullNami, isOutfit } = config;
-            const t = tierConfig[tier];
             
-            // 🚨 옷 카드는 전용 클래스 추가
+            // 옷 레어일 경우 특수 처리
+            let tKey = tier;
+            if(tier === 'rare' && isOutfit) tKey = 'outfitRare';
+            const t = tierConfig[tKey];
+            
+            // 옷 카드는 전용 클래스 추가 (크기 1.75배)
             const outfitClass = isOutfit ? 'outfit-card' : '';
-            // 🚨 울트라 탭 Heads는 [과일명] [속성명]으로 표시
             const mainTitle = fullNami || title;
-            // 🚨 옷 카드는 subtitle에 등급 이름 명시
-            const mainSubtitle = isOutfit ? `${t.tierName} OUTFIT` : subtitle;
+            const mainSubtitle = isOutfit ? `${t.tierName === 'Common & Rare Base' ? 'Common' : t.tierName} OUTFIT` : subtitle;
 
             return `
                 <div class="nft-card ${t.borderClass} ${tier}-card ${outfitClass}">
@@ -269,20 +277,25 @@
         }
 
         // ==========================================
-        // 1. HEADS 데이터 세팅
+        // 1. HEADS 데이터 세팅 (스크린샷 오타 완벽 동기화)
         // ==========================================
         const fruits = [
-            { id: 'apple', name: 'Apple' }, { id: 'banana', name: 'Banana' },
-            { id: 'strawberry', name: 'Strawberry' }, { id: 'kiwi', name: 'Kiwi' },
-            { id: 'lemon', name: 'Lemon' }, { id: 'melon', name: 'Melon' },
-            { id: 'blueberry', name: 'Blueberry' }, { id: 'peach', name: 'Peach' },
-            { id: 'watermelon', name: 'Watermelon' }, { id: 'orange', name: 'Orange' },
-            { id: 'pineapple', name: 'Pineapple' }
+            { id: 'apple', name: 'Apple', u1: {file: 'crimson', label: 'Crimson'}, u2: {file: 'solar', label: 'Solar'} },
+            { id: 'banana', name: 'Banana', u1: {file: 'aurora', label: 'Aurora'}, u2: {file: 'void', label: 'Void'} },
+            { id: 'strawberry', name: 'Strawberry', u1: {file: 'neon', label: 'Neon'}, u2: {file: 'obsidian', label: 'Obsidian'} },
+            { id: 'kiwi', name: 'Kiwi', u1: {file: 'neon', label: 'Neon'}, u2: {file: 'solar', label: 'Solar'} },
+            { id: 'lemon', name: 'Lemon', u1: {file: 'crystal', label: 'Crystal'}, u2: {file: 'electric', label: 'Electric'} },
+            { id: 'melon', name: 'Melon', u1: {file: 'ice', label: 'Ice'}, u2: {file: 'toxic', label: 'Toxic'} },
+            { id: 'blueberry', name: 'Blueberry', u1: {file: 'galaxy', label: 'Galaxy'}, u2: {file: 'ice', label: 'Ice'} },
+            { id: 'peach', name: 'Peach', u1: {file: 'cream', label: 'Cream'}, u2: {file: 'sunset', label: 'Sunset'} },
+            // 🚨 수박 오타 파일명(darkmatte) 적용
+            { id: 'watermelon', name: 'Watermelon', u1: {file: 'chroma', label: 'Chroma'}, u2: {file: 'darkmatte', label: 'Darkmatter'} },
+            { id: 'orange', name: 'Orange', u1: {file: 'amber', label: 'Amber'}, u2: {file: 'molten', label: 'Molten'} },
+            { id: 'pineapple', name: 'Pineapple', u1: {file: 'diamond', label: 'Diamond'}, u2: {file: 'plasma', label: 'Plasma'} }
         ];
 
         const fruitContainer = document.getElementById('dynamic-fruits-container');
         fruits.forEach(f => {
-            // 폴더 역할 토글 (배너 스타일)
             fruitContainer.innerHTML += `
                 <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-${f.id}')">
                     <div class="flex items-center gap-5">
@@ -306,39 +319,71 @@
 
         function renderHeadItems(f) {
             const os = getOpenseaLink('fruit_head', f.name);
-            const basicSubtitle = 'By Inner Juicy';
+            const basicSubtitle = 'INNER JUICY';
+            
+            // 🚨 오렌지 레어 헤드셋 오타 파일명(ornage) 적용
+            const rareHeadsetFile = f.id === 'orange' ? 'ornage-rare-headset.png' : `${f.id}-rare-headset.png`;
+
             return `
-                ${createCardHTML({ tier: 'common', imgSrc: `./images/${f.id}-common.png`, title: `${f.name} Genesis`, subtitle: basicSubtitle, link: os })}
-                ${createCardHTML({ tier: 'rare', imgSrc: `./images/${f.id}-rare-headset.png`, title: `${f.name} Audio`, subtitle: basicSubtitle, link: os })}
-                ${createCardHTML({ tier: 'rare', imgSrc: `./images/${f.id}-rare-sunglasses.png`, title: `${f.name} Shades`, subtitle: basicSubtitle, link: os })}
-                ${createCardHTML({ tier: 'ultra', imgSrc: `./images/${f.id}-ultra-1.png`, title: `Melon Darkmatter`, subtitle: basicSubtitle, link: os })}
-                ${createCardHTML({ tier: 'ultra', imgSrc: `./images/${f.id}-ultra-2.png`, title: `Melon Ice`, subtitle: basicSubtitle, link: os })}
+                ${createCardHTML({ tier: 'common', imgSrc: `./images/${f.id}-common.png`, title: `${f.name} Core`, subtitle: basicSubtitle, link: os })}
+                ${createCardHTML({ tier: 'rare', imgSrc: `./images/${rareHeadsetFile}`, title: `${f.name} Headset`, subtitle: basicSubtitle, link: os })}
+                ${createCardHTML({ tier: 'rare', imgSrc: `./images/${f.id}-rare-sunglasses.png`, title: `${f.name} Sunglasses`, subtitle: basicSubtitle, link: os })}
+                ${createCardHTML({ tier: 'ultra', imgSrc: `./images/${f.id}-ultra-${f.u1.file}.png`, fullNami: `${f.name} ${f.u1.label}`, subtitle: 'Ultra Head', link: getOpenseaLink('ultra_head', f.u1.label) })}
+                ${createCardHTML({ tier: 'ultra', imgSrc: `./images/${f.id}-ultra-${f.u2.file}.png`, fullNami: `${f.name} ${f.u2.label}`, subtitle: 'Ultra Head', link: getOpenseaLink('ultra_head', f.u2.label) })}
             `;
         }
 
         // ==========================================
-        // 2. OUTFITS 데이터 세팅
+        // 2. OUTFITS 데이터 세팅 (스크린샷의 모든 옷 리스트)
         // ==========================================
         const outfitFiles = [
             // Common
-            {t:'Green Sweater Cross', f:'green-sweater-common.png', r:'common'},
-            {t:'Green Sweater Cross', f:'green-sweater-common.png', r:'common'},
-            {t:'Hoodie Offer', f:'hoodie-common.png', r:'common'},
+            {t:'Green Sweater 1', f:'green-sweater-1.png', r:'common'},
+            {t:'Green Sweater 2', f:'green-sweater-2.png', r:'common'},
+            {t:'Green Sweater 3', f:'green-sweater-3.png', r:'common'},
+            {t:'Green Sweater 4', f:'green-sweater-4.png', r:'common'},
+            {t:'Hoodie 1', f:'hoodie-1.png', r:'common'},
+            {t:'Hoodie 2', f:'hoodie-2.png', r:'common'},
+            {t:'Hoodie 3', f:'hoodie-3.png', r:'common'},
+            {t:'Hoodie 4', f:'hoodie-4.png', r:'common'},
+            {t:'Hoodie 5', f:'hoodie-5.png', r:'common'},
+            {t:'Hoodie 6', f:'hoodie-6.png', r:'common'},
+            {t:'Navy Sweater 1', f:'navy-sweater-1.png', r:'common'},
+            {t:'Navy Sweater 2', f:'navy-sweater-2.png', r:'common'},
+            {t:'Navy Sweater 3', f:'navy-sweater-3.png', r:'common'},
+            {t:'Navy Sweater 4', f:'navy-sweater-4.png', r:'common'},
+            {t:'Navy Sweater 5', f:'navy-sweater-5.png', r:'common'},
+            {t:'Navy Sweater 6', f:'navy-sweater-6.png', r:'common'},
+            
             // Rare
-            {t:'Astronaut Wave', f:'astronaut-rare.png', r:'rare'},
-            {t:'Leather Jacket Candy', f:'leather-jacket-rare.png', r:'rare'},
-            {t:'Leather Jacket Candy', f:'leather-jacket-rare.png', r:'rare'},
-            {t:'Leather Jacket Candy', f:'leather-jacket-rare.png', r:'rare'},
-            {t:'Work Jacket Offer', f:'work-jacket-rare.png', r:'rare'},
-            // 🚨 outfit-spiked-punk.png로 수정 및 Spiked Punk로 네이밍 수정
-            {t:'Spiked Punk', f:'outfit-spiked-punk.png', r:'ultra'}, 
+            {t:'Astronaut Candy', f:'astronaut-candy.png', r:'rare'},
+            {t:'Astronaut Handshake', f:'astronaut-handshake.png', r:'rare'},
+            {t:'Astronaut Suit', f:'astronaut-suit.png', r:'rare'},
+            {t:'Astronaut Wave', f:'astronaut-wave.png', r:'rare'},
+            {t:'Leather Jacket Candy', f:'leather-jacket-candy.png', r:'rare'},
+            {t:'Leather Jacket Handshake', f:'leather-jacket-handshake.png', r:'rare'},
+            {t:'Leather Jacket Shrug', f:'leather-jacket-shrug.png', r:'rare'},
+            {t:'Leather Jacket', f:'leather-jacket.png', r:'rare'},
+            {t:'Work Jacket Candy', f:'work-jacket-candy.png', r:'rare'},
+            {t:'Work Jacket Cross', f:'work-jacket-cross.png', r:'rare'},
+            {t:'Work Jacket Offer', f:'work-jacket-offer.png', r:'rare'},
+            {t:'Work Jacket', f:'work-jacket.png', r:'rare'},
+            
+            // Ultra
+            {t:'Crystal Mage', f:'outfit-crystal-mage.png', r:'ultra'},
+            {t:'Cyberpunk Jacket', f:'outfit-cyberpunk-jacket.png', r:'ultra'},
+            {t:'Dragon Armor', f:'outfit-dragon-armor.png', r:'ultra'},
+            {t:'Gold Astronaut', f:'outfit-gold-astronaut.png', r:'ultra'},
             {t:'Jungle Vest', f:'outfit-jungle-vest.png', r:'ultra'},
-            {t:'Gold Astronaut', f:'outfit-gold-astronaut.png', r:'ultra'}
+            {t:'Nebula Hood', f:'outfit-nebula-hood.png', r:'ultra'},
+            {t:'Pharaoh', f:'outfit-pharaoh.png', r:'ultra'},
+            {t:'Royal Robe', f:'outfit-royal-robe.png', r:'ultra'},
+            {t:'Spiked Punk', f:'outfit-spiked-punk.png', r:'ultra'},
+            {t:'Steampunk Vest', f:'outfit-steampunk-vest.png', r:'ultra'}
         ];
 
         const outfitGrid = document.getElementById('outfits-tab-grid');
         outfitFiles.forEach(item => {
-            // 🚨 옷 카드는 전용 positioning 사용
             outfitGrid.innerHTML += createCardHTML({ 
                 tier: item.r, imgSrc: `./images/${item.f}`, 
                 title: item.t, subtitle: '', 
@@ -348,62 +393,27 @@
         });
 
         // ==========================================
-        // 3. ULTRA Archive 세팅
+        // 3. ULTRA 전용 탭 세팅 (헤드 & 옷장)
         // ==========================================
-        const ultraHeadsFiles = [
-            { f: 'Melon Darkmatter', i: 'melon-ultra-darkmatter.png' },
-            { f: 'Melon Ice', i: 'melon-ultra-ice.png' },
-            { f: 'Blueberry Galaxy', i: 'blueberry-ultra-galaxy.png' },
-            { f: 'Blueberry Ice', i: 'blueberry-ultra-ice.png' },
-            { f: 'Apple Crimson', i: 'apple-ultra-crimson.png' },
-            { f: 'Apple Solar', i: 'apple-ultra-solar.png' },
-            { f: 'Banana Aurora', i: 'banana-ultra-aurora.png' },
-            { f: 'Banana Void', i: 'banana-ultra-void.png' },
-            { f: 'Strawberry Neon', i: 'strawberry-ultra-neon.png' },
-            { f: 'Strawberry Obsidian', i: 'strawberry-ultra-obsidian.png' },
-            { f: 'Kiwi Solar', i: 'kiwi-ultra-solar.png' },
-            { f: 'Kiwi Neon', i: 'kiwi-ultra-neon.png' },
-            { f: 'Lemon Crystal', i: 'lemon-ultra-crystal.png' },
-            { f: 'Lemon Electric', i: 'lemon-ultra-electric.png' },
-            { f: 'Peach Cream', i: 'peach-ultra-cream.png' },
-            { f: 'Peach Sunset', i: 'peach-ultra-sunset.png' },
-            { f: 'Watermelon Darkmatter', i: 'watermelon-ultra-darkmatter.png' },
-            { f: 'Watermelon Chroma', i: 'watermelon-ultra-chroma.png' },
-            { f: 'Orange Amber', i: 'orange-ultra-amber.png' },
-            { f: 'Orange Molten', i: 'orange-ultra-molten.png' },
-            { f: 'Pineapple Diamond', i: 'pineapple-ultra-diamond.png' },
-            { f: 'Pineapple Plasma', i: 'pineapple-ultra-plasma.png' }
-        ];
-
         const ultraHeadsGrid = document.getElementById('ultra-heads-grid');
-        ultraHeadsFiles.forEach(item => {
-            // 🚨 울트라 탭 Heads는 [과일명] [속성명]으로 표시
+        fruits.forEach(f => {
+            // 과일명 + 속성명 (e.g. Apple Crimson)
             ultraHeadsGrid.innerHTML += createCardHTML({ 
-                tier: 'ultra', imgSrc: `./images/${item.i}`, 
-                fullNami: item.f, subtitle: 'Ultra Head', 
-                link: getOpenseaLink('ultra_head', item.f.split(' ')[1])
+                tier: 'ultra', imgSrc: `./images/${f.id}-ultra-${f.u1.file}.png`, 
+                fullNami: `${f.name} ${f.u1.label}`, subtitle: 'Ultra Head', 
+                link: getOpenseaLink('ultra_head', f.u1.label)
+            });
+            ultraHeadsGrid.innerHTML += createCardHTML({ 
+                tier: 'ultra', imgSrc: `./images/${f.id}-ultra-${f.u2.file}.png`, 
+                fullNami: `${f.name} ${f.u2.label}`, subtitle: 'Ultra Head', 
+                link: getOpenseaLink('ultra_head', f.u2.label)
             });
         });
 
-        const ultraOutfitTraits = ["Dragon Armor", "Jungle Vest", "Steampunk Vest", "Pharaoh", "Silver Spiked Punk", "Nebula Hood", "Gold Astronaut"];
-        const ultraOutfitsGrid = document.getElementById('ultra-outfits-grid');
-        
-        const outfitTraitsData = [
-            {t: 'Dragon Armor', f: 'outfit-dragon-armor.png'},
-            {t: 'Jungle Vest', f: 'outfit-jungle-vest.png'},
-            {t: 'Hoodie Vest', f: 'hoodie-common.png'},
-            {t: 'Dragon Armor', f: 'outfit-dragon-armor.png'},
-            {t: 'Navy-jacket Candy', f: 'work-jacket-common.png'},
-            {t: 'navy-jacket Candy', f: 'work-jacket-common.png'},
-            {t: 'work-jacket-Shrug', f: 'work-jacket-common.png'},
-            {t: 'work-jacket-Offer', f: 'work-jacket-common.png'},
-            {t: 'work-jacket-Shrug', f: 'work-jacket-common.png'},
-            {t: 'Dragon Armor', f: 'outfit-dragon-armor.png'}
-        ];
-
         const ultraTabOutfitGrid = document.getElementById('ultra-outfits-grid');
-        outfitTraitsData.forEach(item => {
-            // 🚨 옷 카드는 전용 positioning 사용
+        const ultraOutfitsData = outfitFiles.filter(item => item.r === 'ultra');
+        
+        ultraOutfitsData.forEach(item => {
             ultraTabOutfitGrid.innerHTML += createCardHTML({ 
                 tier: 'ultra', imgSrc: `./images/${item.f}`, 
                 title: item.t, subtitle: '', 
@@ -412,7 +422,7 @@
             });
         });
 
-        // 탭 전환 로직
+        // 탭 전환 및 아코디언 로직
         function switchTab(tab) {
             document.querySelectorAll('.section-container').forEach(s => s.classList.add('hidden'));
             document.getElementById(`sec-${tab}`).classList.remove('hidden');
@@ -427,12 +437,10 @@
             activeBtn.classList.add('tab-active');
         }
 
-        // 아코디언 로직
         function toggleExpand(id) {
             const el = document.getElementById(id);
             el.classList.toggle('active');
             
-            // 화살표 회전 애니메이션
             const svg = event.currentTarget.querySelector('svg');
             if (el.classList.contains('active')) {
                 svg.style.transform = 'rotate(180deg)';
