@@ -55,15 +55,15 @@
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
-        /* 🚨 헤드 이미지 기준점 */
+        /* 🚨 1. 헤드(과일) 이미지 기준점: 하단 120px / 높이 200px */
         .nft-card:not(.outfit-card) .nft-image { bottom: 120px; height: 200px; }
         
-        /* 🚨 옷 이미지 기준점 (라인은 120px로 헤드와 맞추고 크기는 1.75배로 대폭 확장!) */
-        .outfit-card .nft-image { bottom: 120px; height: 290px; top: auto; }
+        /* 🚨 2. 옷 이미지 기준점: 하단 120px 고정 + 크기 1.75배 확대 (약 280px) */
+        .outfit-card .nft-image { bottom: 120px; height: 280px; top: auto; }
         
-        /* 호버 시 애니메이션 */
+        /* 호버 시 애니메이션 (크기 살짝 커지고 위로 올라감) */
         .nft-card:not(.outfit-card):hover .nft-image { height: 210px; bottom: 125px; }
-        .outfit-card:hover .nft-image { height: 300px; bottom: 125px; }
+        .outfit-card:hover .nft-image { height: 290px; bottom: 125px; }
 
         /* 플로팅 글래스 뱃지 */
         .glass-badge {
@@ -135,27 +135,27 @@
     <div class="bg-glow-pink"></div>
     <div class="bg-glow-cyan"></div>
 
-    <header class="mb-10 flex justify-between items-center z-50 relative max-w-screen-xl mx-auto">
+    <header class="mb-10 flex justify-between items-center z-50 relative">
         <div class="flex items-center gap-3">
-            <img src="https://i.pravatar.cc/100?img=47" class="w-12 h-12 rounded-full border-2 border-white/10 object-cover shadow-lg" alt="Profile">
+            <img src="https://i.pravatar.cc/100?img=47" class="w-12 h-12 rounded-full border-2 border-white/10 object-cover" alt="Profile">
             <div>
                 <h1 class="text-base font-black text-white tracking-tight">Hello, Juicy</h1>
                 <p class="text-xs text-gray-400 font-semibold mt-0.5 tracking-wide">1.2k Assets Archive</p>
             </div>
         </div>
-        <div class="w-12 h-12 rounded-full bg-[#1F222A] border border-white/5 flex items-center justify-center cursor-pointer hover:bg-white/10 transition shadow-lg">
+        <div class="w-12 h-12 rounded-full bg-nav-bg border border-white/5 flex items-center justify-center cursor-pointer hover:bg-white/10 transition">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
         </div>
     </header>
 
-    <div class="mb-8 relative z-40 max-w-screen-xl mx-auto">
-        <div class="bg-[#1F222A] rounded-full py-4 px-6 flex items-center gap-3 border border-white/5 shadow-inner">
+    <div class="mb-8 relative z-40">
+        <div class="bg-nav-bg rounded-full py-4 px-6 flex items-center gap-3 border border-white/5">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="text" placeholder="Search NFT or artist name..." class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-500 font-medium">
         </div>
     </div>
 
-    <div class="mb-8 flex gap-3 overflow-x-auto no-scrollbar z-40 relative max-w-screen-xl mx-auto">
+    <div class="mb-8 flex gap-3 overflow-x-auto no-scrollbar z-40 relative">
         <div class="pill-tab tab-active" id="btn-heads" onclick="switchTab('heads')">All Heads</div>
         <div class="pill-tab tab-inactive" id="btn-outfits" onclick="switchTab('outfits')">Outfits</div>
         <div class="pill-tab tab-inactive flex items-center gap-1" id="btn-ultra" onclick="switchTab('ultra')">
@@ -164,25 +164,25 @@
         </div>
     </div>
 
-    <main class="relative z-10 pb-40 max-w-screen-xl mx-auto">
+    <main class="relative z-10 pb-40">
         <div class="flex justify-between items-end mb-6 px-1">
             <h2 class="text-xl font-bold tracking-tight">All Collection</h2>
             <span class="text-[11px] font-bold text-gray-400 cursor-pointer hover:text-white transition uppercase tracking-wider">See All</span>
         </div>
 
         <div id="sec-heads" class="section-container">
-            <div id="dynamic-fruits-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+            <div id="dynamic-fruits-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
         </div>
 
         <div id="sec-outfits" class="section-container hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-[#1F222A] rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-common')">
+                <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-common')">
                     <div class="flex items-center gap-5">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#D6B7C5] to-[#9A8CA5] flex items-center justify-center p-1 relative overflow-hidden">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1A1D24] to-[#121419] flex items-center justify-center p-1 relative overflow-hidden">
                             <img src="./images/green-sweater-1.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
                         </div>
                         <div>
-                            <h3 class="text-xl font-black text-white group-hover:text-white transition-colors">COMMON OUTFITS</h3>
+                            <h3 class="text-xl font-black text-white group-hover:text-pink-300 transition-colors">COMMON OUTFITS</h3>
                             <p class="text-[11px] text-gray-400 uppercase tracking-widest font-bold mt-1">Essential Tier</p>
                         </div>
                     </div>
@@ -192,7 +192,7 @@
                 </div>
                 <div id="grid-cloth-common" class="expand-grid col-span-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 pt-2"></div>
 
-                <div class="bg-[#1F222A] rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-rare')">
+                <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-rare')">
                     <div class="flex items-center gap-5">
                         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1E2D3D] to-[#111A24] border border-[#9CE2E8]/30 flex items-center justify-center p-1 relative overflow-hidden">
                             <img src="./images/astronaut-suit.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
@@ -208,7 +208,7 @@
                 </div>
                 <div id="grid-cloth-rare" class="expand-grid col-span-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 pt-2"></div>
 
-                <div class="bg-[#1F222A] rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-ultra')">
+                <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-ultra')">
                     <div class="flex items-center gap-5">
                         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2A2416] to-[#0D0B08] border border-[#D4AF37]/50 flex items-center justify-center p-1 relative overflow-hidden">
                             <img src="./images/outfit-dragon-armor.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
@@ -231,13 +231,13 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="#FAD982"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
                 <h3 class="text-2xl font-black text-gradient-ultra tracking-tight">Ultra Heads</h3>
             </div>
-            <div id="grid-ultra-heads" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16"></div>
+            <div id="ultra-heads-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16"></div>
             
             <div class="flex items-center gap-3 mb-6 px-2">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="#FAD982"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
                 <h3 class="text-2xl font-black text-gradient-ultra tracking-tight">Ultra Outfits</h3>
             </div>
-            <div id="grid-ultra-outfits-tab" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            <div id="ultra-outfits-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
         </div>
     </main>
 
@@ -251,7 +251,6 @@
         const ethBadgeSvg = `<svg width="12" height="16" viewBox="0 0 320 512" fill="currentColor"><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8z"/></svg>`;
         const heartSvg = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
 
-        // 등급별 디자인 설정
         const tierConfig = {
             common: { badgeClass: 'badge-common', tierName: 'Common', priceIconColor: 'white', bidText: 'View Item', bidClass: 'glass-btn', borderClass: 'card-border-common' },
             rare: { badgeClass: 'badge-rare', tierName: 'Limited', titleColor: '#9CE2E8', priceIconColor: '#9CE2E8', bidText: 'Place Bid', bidClass: 'glass-btn', borderClass: 'card-border-rare' },
@@ -270,8 +269,8 @@
                 <div class="nft-card ${t.borderClass} ${tier}-card ${outfitClass}">
                     <div class="absolute top-4 left-4 z-20 glass-badge ${t.badgeClass}">
                         ${ethBadgeSvg}
-                        <div class="flex flex-col leading-none">
-                            <span class="text-[9px] opacity-70 mb-[1px]">Rarity</span>
+                        <div class="flex flex-col leading-none text-left">
+                            <span class="text-[8px] opacity-70 mb-[1px]">Rarity</span>
                             <span class="tracking-wide">${badgeText}</span>
                         </div>
                     </div>
@@ -303,7 +302,7 @@
         }
 
         // ==========================================
-        // 1. HEADS 데이터 세팅 (울트라 속성명 동적 매핑 완벽 적용)
+        // 1. HEADS 데이터 세팅
         // ==========================================
         const fruits = [
             { id: 'apple', name: 'Apple', u1: {file: 'crimson', label: 'Crimson'}, u2: {file: 'solar', label: 'Solar'} },
@@ -322,10 +321,10 @@
         const fruitContainer = document.getElementById('dynamic-fruits-container');
         fruits.forEach(f => {
             fruitContainer.innerHTML += `
-                <div class="bg-[#1F222A] rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-${f.id}')">
+                <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-${f.id}')">
                     <div class="flex items-center gap-5">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1A1D24] to-[#121419] flex items-center justify-center p-1 relative overflow-hidden border border-white/10">
-                            <img src="./images/${f.id}-common.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500" onerror="this.src='https://via.placeholder.com/100'">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1A1D24] to-[#121419] flex items-center justify-center p-1 relative overflow-hidden">
+                            <img src="./images/${f.id}-common.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
                         </div>
                         <div>
                             <h3 class="text-xl font-black text-white group-hover:text-pink-300 transition-colors">${f.name} Archive</h3>
@@ -349,64 +348,75 @@
                 ${createCardHTML({ tier: 'common', customBadge: 'Common & Rare Base', imgSrc: `./images/${f.id}-common.png`, title: `${f.name} Core`, subtitle: basicSubtitle, link: os })}
                 ${createCardHTML({ tier: 'rare', customBadge: 'Rare Head', imgSrc: `./images/${f.id}-rare-headset.png`, title: `${f.name} Headset`, subtitle: basicSubtitle, link: os })}
                 ${createCardHTML({ tier: 'rare', customBadge: 'Rare Head', imgSrc: `./images/${f.id}-rare-sunglasses.png`, title: `${f.name} Sunglasses`, subtitle: basicSubtitle, link: os })}
-                ${createCardHTML({ tier: 'ultra', customBadge: 'Masterpiece', imgSrc: `./images/${f.id}-ultra-${f.u1.file}.png`, fullNami: `${f.name} ${f.u1.label}`, subtitle: basicSubtitle, link: getOpenseaLink('ultra_head', f.u1.label) })}
-                ${createCardHTML({ tier: 'ultra', customBadge: 'Masterpiece', imgSrc: `./images/${f.id}-ultra-${f.u2.file}.png`, fullNami: `${f.name} ${f.u2.label}`, subtitle: basicSubtitle, link: getOpenseaLink('ultra_head', f.u2.label) })}
+                ${createCardHTML({ tier: 'ultra', imgSrc: `./images/${f.id}-ultra-${f.u1.file}.png`, fullNami: `${f.name} ${f.u1.label}`, subtitle: basicSubtitle, link: getOpenseaLink('ultra_head', f.u1.label) })}
+                ${createCardHTML({ tier: 'ultra', imgSrc: `./images/${f.id}-ultra-${f.u2.file}.png`, fullNami: `${f.name} ${f.u2.label}`, subtitle: basicSubtitle, link: getOpenseaLink('ultra_head', f.u2.label) })}
             `;
         }
 
         // ==========================================
-        // 2. OUTFITS 데이터 세팅 (스크린샷 기반 Rarity 완벽 분류)
+        // 2. OUTFITS 데이터 세팅 (Rarity 완벽 매핑)
         // ==========================================
-        const commonOutfitFiles = [
-            {t:'Green Sweater 1', f:'green-sweater-1.png'}, {t:'Green Sweater 2', f:'green-sweater-2.png'},
-            {t:'Green Sweater 3', f:'green-sweater-3.png'}, {t:'Green Sweater 4', f:'green-sweater-4.png'},
-            {t:'Hoodie 1', f:'hoodie-1.png'}, {t:'Hoodie 2', f:'hoodie-2.png'},
-            {t:'Hoodie 3', f:'hoodie-3.png'}, {t:'Hoodie 4', f:'hoodie-4.png'},
-            {t:'Hoodie 5', f:'hoodie-5.png'}, {t:'Hoodie 6', f:'hoodie-6.png'},
-            {t:'Navy Sweater 1', f:'navy-sweater-1.png'}, {t:'Navy Sweater 2', f:'navy-sweater-2.png'},
-            {t:'Navy Sweater 3', f:'navy-sweater-3.png'}, {t:'Navy Sweater 4', f:'navy-sweater-4.png'},
-            {t:'Navy Sweater 5', f:'navy-sweater-5.png'}, {t:'Navy Sweater 6', f:'navy-sweater-6.png'}
-        ];
-        
-        const rareOutfitFiles = [
-            {t:'Astronaut Candy', f:'astronaut-candy.png'}, {t:'Astronaut Handshake', f:'astronaut-handshake.png'},
-            {t:'Astronaut Suit', f:'astronaut-suit.png'}, {t:'Astronaut Wave', f:'astronaut-wave.png'},
-            {t:'Leather Jacket Candy', f:'leather-jacket-candy.png'}, {t:'Leather Jacket Handshake', f:'leather-jacket-handshake.png'},
-            {t:'Leather Jacket Shrug', f:'leather-jacket-shrug.png'}, {t:'Leather Jacket', f:'leather-jacket.png'},
-            {t:'Work Jacket Candy', f:'work-jacket-candy.png'}, {t:'Work Jacket Cross', f:'work-jacket-cross.png'},
-            {t:'Work Jacket Offer', f:'work-jacket-offer.png'}, {t:'Work Jacket', f:'work-jacket.png'}
-        ];
+        const outfitFiles = [
+            // Common (후드, 그린스웨터, 네이비스웨터)
+            {t:'Green Sweater 1', f:'green-sweater-1.png', r:'common'},
+            {t:'Green Sweater 2', f:'green-sweater-2.png', r:'common'},
+            {t:'Green Sweater 3', f:'green-sweater-3.png', r:'common'},
+            {t:'Green Sweater 4', f:'green-sweater-4.png', r:'common'},
+            {t:'Hoodie 1', f:'hoodie-1.png', r:'common'},
+            {t:'Hoodie 2', f:'hoodie-2.png', r:'common'},
+            {t:'Hoodie 3', f:'hoodie-3.png', r:'common'},
+            {t:'Hoodie 4', f:'hoodie-4.png', r:'common'},
+            {t:'Hoodie 5', f:'hoodie-5.png', r:'common'},
+            {t:'Hoodie 6', f:'hoodie-6.png', r:'common'},
+            {t:'Navy Sweater 1', f:'navy-sweater-1.png', r:'common'},
+            {t:'Navy Sweater 2', f:'navy-sweater-2.png', r:'common'},
+            {t:'Navy Sweater 3', f:'navy-sweater-3.png', r:'common'},
+            {t:'Navy Sweater 4', f:'navy-sweater-4.png', r:'common'},
+            {t:'Navy Sweater 5', f:'navy-sweater-5.png', r:'common'},
+            {t:'Navy Sweater 6', f:'navy-sweater-6.png', r:'common'},
+            
+            // Rare (우주복, 가죽자켓, 작업복)
+            {t:'Astronaut Candy', f:'astronaut-candy.png', r:'rare'},
+            {t:'Astronaut Handshake', f:'astronaut-handshake.png', r:'rare'},
+            {t:'Astronaut Suit', f:'astronaut-suit.png', r:'rare'},
+            {t:'Astronaut Wave', f:'astronaut-wave.png', r:'rare'},
+            {t:'Leather Jacket Candy', f:'leather-jacket-candy.png', r:'rare'},
+            {t:'Leather Jacket Handshake', f:'leather-jacket-handshake.png', r:'rare'},
+            {t:'Leather Jacket Shrug', f:'leather-jacket-shrug.png', r:'rare'},
+            {t:'Leather Jacket', f:'leather-jacket.png', r:'rare'},
+            {t:'Work Jacket Candy', f:'work-jacket-candy.png', r:'rare'},
+            {t:'Work Jacket Cross', f:'work-jacket-cross.png', r:'rare'},
+            {t:'Work Jacket Offer', f:'work-jacket-offer.png', r:'rare'},
+            {t:'Work Jacket', f:'work-jacket.png', r:'rare'},
 
-        const ultraOutfitFiles = [
-            {t: 'Crystal Mage', f: 'outfit-crystal-mage.png'}, {t: 'Cyberpunk Jacket', f: 'outfit-cyberpunk-jacket.png'},
-            {t: 'Dragon Armor', f: 'outfit-dragon-armor.png'}, {t: 'Gold Astronaut', f: 'outfit-gold-astronaut.png'},
-            {t: 'Jungle Vest', f: 'outfit-jungle-vest.png'}, {t: 'Nebula Hood', f: 'outfit-nebula-hood.png'},
-            {t: 'Pharaoh', f: 'outfit-pharaoh.png'}, {t: 'Royal Robe', f: 'outfit-royal-robe.png'},
-            {t: 'Spiked Punk', f: 'outfit-spiked-punk.png'}, {t: 'Steampunk Vest', f: 'outfit-steampunk-vest.png'}
+            // Ultra (나머지)
+            {t: 'Crystal Mage', f: 'outfit-crystal-mage.png', r:'ultra'},
+            {t: 'Cyberpunk Jacket', f: 'outfit-cyberpunk-jacket.png', r:'ultra'},
+            {t: 'Dragon Armor', f: 'outfit-dragon-armor.png', r:'ultra'},
+            {t: 'Gold Astronaut', f: 'outfit-gold-astronaut.png', r:'ultra'},
+            {t: 'Jungle Vest', f: 'outfit-jungle-vest.png', r:'ultra'},
+            {t: 'Nebula Hood', f: 'outfit-nebula-hood.png', r:'ultra'},
+            {t: 'Pharaoh', f: 'outfit-pharaoh.png', r:'ultra'},
+            {t: 'Royal Robe', f: 'outfit-royal-robe.png', r:'ultra'},
+            {t: 'Spiked Punk', f: 'outfit-spiked-punk.png', r:'ultra'},
+            {t: 'Steampunk Vest', f: 'outfit-steampunk-vest.png', r:'ultra'}
         ];
 
         const commonGrid = document.getElementById('grid-cloth-common');
-        commonOutfitFiles.forEach(item => {
-            commonGrid.innerHTML += createCardHTML({ 
-                tier: 'common', imgSrc: `./images/${item.f}`, title: item.t, subtitle: '', 
-                link: getOpenseaLink('outfits', item.t), isOutfit: true 
-            });
-        });
-
         const rareGrid = document.getElementById('grid-cloth-rare');
-        rareOutfitFiles.forEach(item => {
-            rareGrid.innerHTML += createCardHTML({ 
-                tier: 'rare', imgSrc: `./images/${item.f}`, title: item.t, subtitle: '', 
-                link: getOpenseaLink('outfits', item.t), isOutfit: true 
-            });
-        });
+        const ultraGrid = document.getElementById('grid-cloth-ultra'); // Outfits 탭 내부의 울트라 아코디언
 
-        const ultraOutfitAccordionGrid = document.getElementById('grid-cloth-ultra');
-        ultraOutfitFiles.forEach(item => {
-            ultraOutfitAccordionGrid.innerHTML += createCardHTML({ 
-                tier: 'ultra', imgSrc: `./images/${item.f}`, title: item.t, subtitle: '', 
-                link: getOpenseaLink('outfit', item.t), isOutfit: true 
+        outfitFiles.forEach(item => {
+            const card = createCardHTML({ 
+                tier: item.r, imgSrc: `./images/${item.f}`, 
+                title: item.t, subtitle: '', 
+                link: getOpenseaLink(item.r === 'ultra' ? 'outfit' : 'outfits', item.t),
+                isOutfit: true 
             });
+            
+            if (item.r === 'common') commonGrid.innerHTML += card;
+            else if (item.r === 'rare') rareGrid.innerHTML += card;
+            else if (item.r === 'ultra') ultraGrid.innerHTML += card;
         });
 
         // ==========================================
@@ -427,10 +437,12 @@
         });
 
         const ultraTabOutfitGrid = document.getElementById('ultra-outfits-grid');
-        ultraOutfitFiles.forEach(item => {
+        outfitFiles.filter(item => item.r === 'ultra').forEach(item => {
             ultraTabOutfitGrid.innerHTML += createCardHTML({ 
-                tier: 'ultra', imgSrc: `./images/${item.f}`, title: item.t, subtitle: '', 
-                link: getOpenseaLink('outfit', item.t), isOutfit: true 
+                tier: 'ultra', imgSrc: `./images/${item.f}`, 
+                title: item.t, subtitle: '', 
+                link: getOpenseaLink('outfit', item.t),
+                isOutfit: true 
             });
         });
 
