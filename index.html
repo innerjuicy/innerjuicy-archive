@@ -209,6 +209,11 @@
     </div>
 
     <main class="px-6 max-w-screen-xl mx-auto pb-40 relative z-10">
+        <div class="flex justify-between items-end mb-6 px-1">
+            <h2 class="text-xl font-bold tracking-tight">All Collection</h2>
+            <span class="text-[11px] font-bold text-gray-400 cursor-pointer hover:text-white transition uppercase tracking-wider">See All</span>
+        </div>
+
         <div id="sec-heads" class="section-container">
             <div id="dynamic-fruits-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
         </div>
@@ -327,20 +332,20 @@
         }
 
         // ==========================================
-        // 1. HEADS 데이터 세팅 (울트라 네이밍 매핑 완료)
+        // 1. HEADS 데이터 세팅 (최종본 파일명 및 특징 네이밍 매핑)
         // ==========================================
         const fruits = [
-            { id: 'apple', name: 'Apple', u1: 'Amber', u2: 'Neon' },
-            { id: 'banana', name: 'Banana', u1: 'Void', u2: 'Molten' },
-            { id: 'strawberry', name: 'Strawberry', u1: 'Obsidian', u2: 'Aurora' },
-            { id: 'kiwi', name: 'Kiwi', u1: 'Sunset', u2: 'Ice' },
-            { id: 'lemon', name: 'Lemon', u1: 'Galaxy', u2: 'Toxic' },
-            { id: 'melon', name: 'Melon', u1: 'Darkmatter', u2: 'Chroma' },
-            { id: 'blueberry', name: 'Blueberry', u1: 'Electric', u2: 'Crystal' },
-            { id: 'peach', name: 'Peach', u1: 'Solar', u2: 'Diamond' },
-            { id: 'watermelon', name: 'Watermelon', u1: 'Plasma', u2: 'Quantum' },
-            { id: 'orange', name: 'Orange', u1: 'Nebula', u2: 'Cosmic' },
-            { id: 'pineapple', name: 'Pineapple', u1: 'Zenith', u2: 'Apex' }
+            { id: 'apple', name: 'Apple', u1: {file: 'crimson', label: 'Crimson'}, u2: {file: 'solar', label: 'Solar'} },
+            { id: 'banana', name: 'Banana', u1: {file: 'aurora', label: 'Aurora'}, u2: {file: 'void', label: 'Void'} },
+            { id: 'strawberry', name: 'Strawberry', u1: {file: 'neon', label: 'Neon'}, u2: {file: 'obsidian', label: 'Obsidian'} },
+            { id: 'kiwi', name: 'Kiwi', u1: {file: 'solar', label: 'Solar'}, u2: {file: 'neon', label: 'Neon'} },
+            { id: 'lemon', name: 'Lemon', u1: {file: 'crystal', label: 'Crystal'}, u2: {file: 'electric', label: 'Electric'} },
+            { id: 'melon', name: 'Melon', u1: {file: 'toxic', label: 'Toxic'}, u2: {file: 'ice', label: 'Ice'} },
+            { id: 'blueberry', name: 'Blueberry', u1: {file: 'ice', label: 'Ice'}, u2: {file: 'galaxy', label: 'Galaxy'} },
+            { id: 'peach', name: 'Peach', u1: {file: 'cream', label: 'Cream'}, u2: {file: 'sunset', label: 'Sunset'} },
+            { id: 'watermelon', name: 'Watermelon', u1: {file: 'darkmatter', label: 'Darkmatter'}, u2: {file: 'chroma', label: 'Chroma'} },
+            { id: 'orange', name: 'Orange', u1: {file: 'amber', label: 'Amber'}, u2: {file: 'molten', label: 'Molten'} },
+            { id: 'pineapple', name: 'Pineapple', u1: {file: 'diamond', label: 'Diamond'}, u2: {file: 'plasma', label: 'Plasma'} }
         ];
 
         const fruitContainer = document.getElementById('dynamic-fruits-container');
@@ -364,12 +369,15 @@
                     ${createCardHTML('common', 'Rare Base', `./images/${f.id}-common.png`, `${f.name} Core`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
                     ${createCardHTML('rare', 'Rare Head', `./images/${f.id}-rare-headset.png`, `${f.name} Audio`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
                     ${createCardHTML('rare', 'Rare Head', `./images/${f.id}-rare-sunglasses.png`, `${f.name} Shades`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
+                    
+                    ${createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-${f.u1.file}.png`, f.u1.label, 'Ultra Head', getOpenseaLink('ultra_head', f.u1.label))}
+                    ${createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-${f.u2.file}.png`, f.u2.label, 'Ultra Head', getOpenseaLink('ultra_head', f.u2.label))}
                 </div>
             `;
         });
 
         // ==========================================
-        // 2. OUTFITS 데이터 세팅 (소문자 하이픈 적용)
+        // 2. OUTFITS 데이터 세팅
         // ==========================================
         const commonFiles = [
             {t:'Green Sweater 1', f:'green-sweater-1.png'},
@@ -398,13 +406,12 @@
         });
 
         // ==========================================
-        // 3. ULTRA 통합 렌더링 (헤드 + 아웃핏)
+        // 3. ULTRA 통합 렌더링 (Ultra 전용 탭)
         // ==========================================
         const uhGrid = document.getElementById('grid-ultra-heads');
         fruits.forEach(f => {
-            // 파일명은 과일-ultra-1.png, 화면 표기는 u1, u2 고유 네이밍
-            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-1.png`, f.u1, 'Ultra Head', getOpenseaLink('ultra_head', f.u1));
-            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-2.png`, f.u2, 'Ultra Head', getOpenseaLink('ultra_head', f.u2));
+            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-${f.u1.file}.png`, f.u1.label, 'Ultra Head', getOpenseaLink('ultra_head', f.u1.label));
+            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-${f.u2.file}.png`, f.u2.label, 'Ultra Head', getOpenseaLink('ultra_head', f.u2.label));
         });
 
         const ultraOutfitsData = [
@@ -417,7 +424,7 @@
             {t: 'Royal Robe', f: 'outfit-royal-robe.png'},
             {t: 'Nebula Hood', f: 'outfit-nebula-hood.png'},
             {t: 'Crystal Mage', f: 'outfit-crystal-mage.png'},
-            {t: 'Silver Spiked Punk', f: 'outfit-silver-spiked-punk.png'}
+            {t: 'Spiked Punk', f: 'outfit-spiked-punk.png'} // Silver 제거됨
         ];
 
         const uoGrid = document.getElementById('grid-ultra-outfits');
