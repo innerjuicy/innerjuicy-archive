@@ -49,9 +49,9 @@
         /* 🚨 수정됨: 이미지가 텍스트에 가리지 않도록 정중앙 상단 배치 */
         .nft-image {
             position: absolute;
-            top: 40%; /* 카드 위쪽에서 40% 지점에 중심축 배치 */
+            top: 15%; /* Position from the top to be higher */
             left: 50%;
-            transform: translate(-50%, -50%); /* 완벽한 중앙 정렬 */
+            transform: translateX(-50%); /* Maintain horizontal centering */
             height: 60%; /* 이미지가 너무 커서 글씨를 덮지 않도록 제한 */
             max-width: 90%;
             object-fit: contain;
@@ -61,7 +61,7 @@
         }
         .nft-card:hover .nft-image {
             height: 65%;
-            transform: translate(-50%, -55%); /* 마우스 올렸을 때 살짝 위로 커짐 */
+            transform: translateX(-50%) translateY(-5px); /* 마우스 올렸을 때 살짝 위로 커짐 */
         }
 
         /* 글래스 뱃지 */
@@ -383,7 +383,7 @@
         });
 
         // ==========================================
-        // 2. OUTFITS 렌더링 (스크린샷에 있는 모든 항목 반영)
+        // 2. OUTFITS 렌더링 (스크린샷에 있는 모든 항목 반영 완료)
         // ==========================================
         const commonFiles = [
             {t:'Green Sweater 1', f:'green-sweater-1.png'},
