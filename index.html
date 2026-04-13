@@ -46,20 +46,22 @@
             height: 360px;
         }
         
+        /* 🚨 수정됨: 이미지가 텍스트에 가리지 않도록 정중앙 상단 배치 */
         .nft-image {
             position: absolute;
-            bottom: 0;
+            top: 40%; /* 카드 위쪽에서 40% 지점에 중심축 배치 */
             left: 50%;
-            transform: translateX(-50%);
-            height: 85%;
+            transform: translate(-50%, -50%); /* 완벽한 중앙 정렬 */
+            height: 60%; /* 이미지가 너무 커서 글씨를 덮지 않도록 제한 */
+            max-width: 90%;
             object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             z-index: 1;
         }
         .nft-card:hover .nft-image {
-            height: 92%;
-            transform: translateX(-50%) translateY(-5px);
+            height: 65%;
+            transform: translate(-50%, -55%); /* 마우스 올렸을 때 살짝 위로 커짐 */
         }
 
         /* 글래스 뱃지 */
@@ -98,8 +100,8 @@
         .card-bottom-info {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            padding: 50px 20px 24px 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+            padding: 60px 20px 24px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
             z-index: 10;
             display: flex;
             flex-direction: column;
@@ -131,9 +133,7 @@
            
         /* 1. Common */
         .card-common { border-color: rgba(255, 255, 255, 0.1); }
-        .card-common:hover {
-            border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 20px 40px -10px rgba(255, 255, 255, 0.1); transform: translateY(-8px);
-        }
+        .card-common:hover { border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 20px 40px -10px rgba(255, 255, 255, 0.1); transform: translateY(-8px); }
         .img-bg-common { background: linear-gradient(160deg, #D6B7C5, #9A8CA5); }
         .badge-common { color: #fff; }
         .circle-common { color: #fff; }
@@ -142,9 +142,7 @@
 
         /* 2. Rare */
         .card-rare { border-color: rgba(156, 226, 232, 0.2); }
-        .card-rare:hover {
-            border-color: rgba(156, 226, 232, 0.7); box-shadow: 0 25px 50px -12px rgba(156, 226, 232, 0.3); transform: translateY(-8px);
-        }
+        .card-rare:hover { border-color: rgba(156, 226, 232, 0.7); box-shadow: 0 25px 50px -12px rgba(156, 226, 232, 0.3); transform: translateY(-8px); }
         .img-bg-rare { background: linear-gradient(160deg, #1E2D3D, #111A24); }
         .badge-rare { color: #9CE2E8; }
         .circle-rare { color: #9CE2E8; }
@@ -158,11 +156,7 @@
             background: linear-gradient(90deg, transparent, rgba(255,235,150,0.2), transparent);
             transform: skewX(-25deg); transition: 0.7s; z-index: 20; pointer-events: none;
         }
-        .card-ultra:hover {
-            border-color: rgba(255, 215, 0, 1);
-            box-shadow: 0 30px 60px -10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.3) inset;
-            transform: translateY(-10px);
-        }
+        .card-ultra:hover { border-color: rgba(255, 215, 0, 1); box-shadow: 0 30px 60px -10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.3) inset; transform: translateY(-10px); }
         .card-ultra:hover::before { left: 150%; }
         .img-bg-ultra { background: linear-gradient(160deg, #2A2416, #0D0B08); }
         .badge-ultra { color: #FAD982; }
@@ -170,9 +164,7 @@
         .btn-ultra { background: linear-gradient(90deg, #D4AF37, #FAD982); color: #16181D; border: none; }
         .btn-ultra:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); filter: brightness(1.1); }
         
-        .text-gradient-ultra {
-            background: linear-gradient(to right, #FAD982, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        .text-gradient-ultra { background: linear-gradient(to right, #FAD982, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body>
@@ -251,6 +243,22 @@
                     </div>
                 </div>
                 <div id="grid-cloth-rare" class="expand-grid col-span-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 pt-2"></div>
+
+                <div class="bg-nav-bg rounded-[28px] p-5 cursor-pointer hover:bg-[#20242D] transition-all border border-white/5 col-span-full flex justify-between items-center group shadow-lg" onclick="toggleExpand('grid-cloth-ultra')">
+                    <div class="flex items-center gap-5">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2A2416] to-[#0D0B08] border border-[#D4AF37]/50 flex items-center justify-center p-1 relative overflow-hidden">
+                            <img src="./images/outfit-dragon-armor.png" class="w-full object-contain transform group-hover:scale-110 transition duration-500">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-black text-gradient-ultra transition-colors">ULTRA OUTFITS</h3>
+                            <p class="text-[11px] text-[#FAD982] uppercase tracking-widest font-bold mt-1">Masterpiece Tier</p>
+                        </div>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#FAD982] group-hover:text-white group-hover:bg-white/20 transition">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+                <div id="grid-cloth-ultra" class="expand-grid col-span-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 pt-2"></div>
             </div>
         </div>
 
@@ -265,7 +273,7 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="#FAD982"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
                 <h3 class="text-2xl font-black text-gradient-ultra tracking-tight">Ultra Outfits</h3>
             </div>
-            <div id="grid-ultra-outfits" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            <div id="grid-ultra-outfits-tab" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
         </div>
     </main>
 
@@ -310,7 +318,8 @@
                         </div>
                     </div>
                     <div class="glass-circle ${t.circleClass}">${heartSvg}</div>
-                    <img src="${imgSrc}" class="nft-image" onerror="this.src='https://via.placeholder.com/300x400/2A2D36/FFFFFF?text=Image+Missing'">
+                    
+                    <img src="${imgSrc}" class="nft-image" onerror="this.src='https://via.placeholder.com/300x400/2A2D36/FFFFFF?text=Loading'">
                     
                     <div class="card-bottom-info">
                         <div>
@@ -332,7 +341,7 @@
         }
 
         // ==========================================
-        // 1. HEADS 데이터 세팅
+        // 1. HEADS 데이터 렌더링
         // ==========================================
         const fruits = [
             { id: 'apple', name: 'Apple', u1: {file: 'crimson', label: 'Crimson'}, u2: {file: 'solar', label: 'Solar'} },
@@ -366,7 +375,7 @@
                     </div>
                 </div>
                 <div id="grid-${f.id}" class="expand-grid col-span-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 pt-2">
-                    ${createCardHTML('common', 'Rare Base', `./images/${f.id}-common.png`, `${f.name} Core`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
+                    ${createCardHTML('common', 'Common & Rare Base', `./images/${f.id}-common.png`, `${f.name} Core`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
                     ${createCardHTML('rare', 'Rare Head', `./images/${f.id}-rare-headset.png`, `${f.name} Headset`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
                     ${createCardHTML('rare', 'Rare Head', `./images/${f.id}-rare-sunglasses.png`, `${f.name} Sunglasses`, 'Inner Juicy', getOpenseaLink('fruit_head', f.name))}
                 </div>
@@ -374,7 +383,7 @@
         });
 
         // ==========================================
-        // 2. OUTFITS 데이터 세팅
+        // 2. OUTFITS 렌더링 (스크린샷에 있는 모든 항목 반영)
         // ==========================================
         const commonFiles = [
             {t:'Green Sweater 1', f:'green-sweater-1.png'},
@@ -383,13 +392,31 @@
             {t:'Green Sweater 4', f:'green-sweater-4.png'},
             {t:'Hoodie 1', f:'hoodie-1.png'},
             {t:'Hoodie 2', f:'hoodie-2.png'},
+            {t:'Hoodie 3', f:'hoodie-3.png'},
+            {t:'Hoodie 4', f:'hoodie-4.png'},
+            {t:'Hoodie 5', f:'hoodie-5.png'},
+            {t:'Hoodie 6', f:'hoodie-6.png'},
             {t:'Navy Sweater 1', f:'navy-sweater-1.png'},
-            {t:'Navy Sweater 2', f:'navy-sweater-2.png'}
+            {t:'Navy Sweater 2', f:'navy-sweater-2.png'},
+            {t:'Navy Sweater 3', f:'navy-sweater-3.png'},
+            {t:'Navy Sweater 4', f:'navy-sweater-4.png'},
+            {t:'Navy Sweater 5', f:'navy-sweater-5.png'},
+            {t:'Navy Sweater 6', f:'navy-sweater-6.png'}
         ];
+        
         const rareFiles = [
+            {t:'Astronaut Candy', f:'astronaut-candy.png'},
+            {t:'Astronaut Handshake', f:'astronaut-handshake.png'},
             {t:'Astronaut Suit', f:'astronaut-suit.png'},
+            {t:'Astronaut Wave', f:'astronaut-wave.png'},
+            {t:'Leather Jacket Candy', f:'leather-jacket-candy.png'},
+            {t:'Leather Jacket Handshake', f:'leather-jacket-handshake.png'},
+            {t:'Leather Jacket Shrug', f:'leather-jacket-shrug.png'},
             {t:'Leather Jacket', f:'leather-jacket.png'},
-            {t:'Steampunk Vest', f:'steampunk-vest.png'}
+            {t:'Work Jacket Candy', f:'work-jacket-candy.png'},
+            {t:'Work Jacket Cross', f:'work-jacket-cross.png'},
+            {t:'Work Jacket Offer', f:'work-jacket-offer.png'},
+            {t:'Work Jacket', f:'work-jacket.png'}
         ];
 
         const commonGrid = document.getElementById('grid-cloth-common');
@@ -403,14 +430,8 @@
         });
 
         // ==========================================
-        // 3. ULTRA 통합 렌더링 (Ultra 전용 탭)
+        // 3. ULTRA 통합 렌더링 
         // ==========================================
-        const uhGrid = document.getElementById('grid-ultra-heads');
-        fruits.forEach(f => {
-            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-${f.u1.file}.png`, f.u1.label, 'Ultra Head', getOpenseaLink('ultra_head', f.u1.label));
-            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-${f.u2.file}.png`, f.u2.label, 'Ultra Head', getOpenseaLink('ultra_head', f.u2.label));
-        });
-
         const ultraOutfitsData = [
             {t: 'Dragon Armor', f: 'outfit-dragon-armor.png'},
             {t: 'Jungle Vest', f: 'outfit-jungle-vest.png'},
@@ -424,12 +445,25 @@
             {t: 'Spiked Punk', f: 'outfit-spiked-punk.png'}
         ];
 
-        const uoGrid = document.getElementById('grid-ultra-outfits');
+        // Outfits 탭 내부에 Ultra 옷장 렌더링
+        const outfitUltraGrid = document.getElementById('grid-cloth-ultra');
         ultraOutfitsData.forEach(item => {
-            uoGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${item.f}`, item.t, 'Ultra Outfit', getOpenseaLink('outfit', item.t));
+            outfitUltraGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${item.f}`, item.t, 'Ultra Tier', getOpenseaLink('outfit', item.t));
         });
 
-        // 탭 및 확장 UI 로직
+        // Ultra 전용 탭 렌더링 (헤드 + 옷 모두 노출)
+        const uhGrid = document.getElementById('grid-ultra-heads');
+        fruits.forEach(f => {
+            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-${f.u1.file}.png`, f.u1.label, 'Ultra Head', getOpenseaLink('ultra_head', f.u1.label));
+            uhGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${f.id}-ultra-${f.u2.file}.png`, f.u2.label, 'Ultra Head', getOpenseaLink('ultra_head', f.u2.label));
+        });
+
+        const ultraTabOutfitGrid = document.getElementById('grid-ultra-outfits-tab');
+        ultraOutfitsData.forEach(item => {
+            ultraTabOutfitGrid.innerHTML += createCardHTML('ultra', 'Masterpiece', `./images/${item.f}`, item.t, 'Ultra Outfit', getOpenseaLink('outfit', item.t));
+        });
+
+        // 탭 및 아코디언 확장 UI 로직
         function switchTab(tab) {
             document.querySelectorAll('.section-container').forEach(s => s.classList.add('hidden'));
             document.getElementById(`sec-${tab}`).classList.remove('hidden');
