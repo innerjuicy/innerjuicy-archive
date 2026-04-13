@@ -48,9 +48,6 @@
         .card-border-ultra { border-color: #D4AF37; }
         .card-border-ultra:hover { border-color: #FAD982; box-shadow: 0 10px 30px -10px rgba(212,175,55,0.5); }
 
-        /* 레어 카드 전용 배경 (네이비-블루 틴트) */
-        .rare-card { background: linear-gradient(160deg, #1E2D3D, #111A24); }
-
         /* 메인 에셋 이미지 positioning */
         .nft-image {
             position: absolute; left: 50%; transform: translateX(-50%);
@@ -58,13 +55,13 @@
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
-        /* 1. 헤드(과일) 이미지 기준점: 하단 120px / 높이 200px */
+        /* 헤드(과일) 이미지 기준점: 하단 120px / 높이 200px */
         .nft-card:not(.outfit-card) .nft-image { bottom: 120px; height: 200px; }
         
-        /* 2. 옷 이미지 기준점: 하단 120px 고정 + 크기 1.75배 확대 (약 280px) */
+        /* 옷 이미지 기준점: 하단 120px 고정 + 크기 1.75배 확대 (약 280px) */
         .outfit-card .nft-image { bottom: 120px; height: 280px; top: auto; }
         
-        /* 호버 시 애니메이션 (크기 살짝 커지고 위로 올라감) */
+        /* 호버 시 애니메이션 */
         .nft-card:not(.outfit-card):hover .nft-image { height: 210px; bottom: 125px; }
         .outfit-card:hover .nft-image { height: 290px; bottom: 125px; }
 
@@ -79,6 +76,7 @@
         .badge-rare { color: #9CE2E8; border-color: rgba(156,226,232,0.4); }
         .badge-ultra { color: #D4AF37; border-color: rgba(212,175,55,0.6); }
 
+        /* 🚨 수정됨: 글래스 원형 스타일 추가 (헤드 아이콘용) */
         .glass-circle {
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px); border-radius: 50%;
@@ -132,21 +130,6 @@
             background: linear-gradient(to right, #FAD982, #D4AF37);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        /* 🚨 푸터 및 소셜 아이콘 전용 스타일 */
-        .footer-title {
-            font-weight: 800; font-size: 16px; letter-spacing: -0.05em;
-            background: linear-gradient(180deg, #EFEFF5 0%, #AAAABC 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .header-social-group a {
-            color: rgba(255,255,255,0.7); transition: all 0.3s ease;
-        }
-        .header-social-group a:hover {
-            color: white; transform: translateY(-2px);
-        }
-        /* Custom style for X icon size alignment */
-        .x-icon { height: 16px !important; width: 16px !important; }
     </style>
 </head>
 <body class="p-6 md:p-10">
@@ -161,15 +144,15 @@
                 <p class="text-xs text-gray-400 font-semibold mt-0.5 tracking-wide">1.2k Assets Archive</p>
             </div>
         </div>
-        <div class="flex items-center gap-3 header-social-group">
-            <a href="#" target="_blank" class="glass-circle border border-white/5 flex items-center justify-center w-10 h-10 shadow-lg" title="Follow Inner Juicy on X">
-                <svg role="img" viewBox="0 0 24 24" fill="currentColor" class="x-icon"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24h-2.195Z"/></svg>
+        <div class="flex items-center gap-3">
+            <a href="https://x.com/innerjuicy_nft" target="_blank" class="w-12 h-12 rounded-full bg-nav-bg border border-white/5 flex items-center justify-center cursor-pointer hover:bg-white/10 transition group">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-gray-400 group-hover:text-white"><path d="M18.901 1.153h3.68l-8.04 9.19 9.457 12.504h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
             </a>
-            <a href="https://discord.gg/4Ms35XDtwR" target="_blank" class="glass-circle border border-white/5 flex items-center justify-center w-10 h-10 shadow-lg" title="Join Inner Juicy Discord">
-                <svg role="img" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1971.3728.2914a.077.077 0 01-.0066.1278 12.2923 12.2923 0 01-1.8722.8923.076.076 0 00-.0416.1061c.353.699.7644 1.3638 1.226 1.9942a.0775.0775 0 00.0842.028c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077 lap0-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z"/></svg>
+            <a href="https://discord.gg/4Ms35XDtwR" target="_blank" class="w-12 h-12 rounded-full bg-nav-bg border border-white/5 flex items-center justify-center cursor-pointer hover:bg-white/10 transition group">
+                <svg width="22" height="18" viewBox="0 0 22 18" fill="currentColor" class="text-gray-400 group-hover:text-white"><path d="M19.167 1.48C17.7 0.778 16.126 0.278 14.475 0c-.2.348-.426.797-.584 1.153-1.742-.252-3.468-.252-5.167 0-.173-.356-.399-.805-.6-1.153C6.474.278 4.9.778 3.433 1.48 0.493 5.768-.291 10.038.106 14.306c1.916 1.366 3.774 2.204 5.586 2.76.44-.582.84-1.205 1.187-1.859-.64-.234-1.25-.52-1.834-.848.156-.108.312-.222.46-.337 3.597 1.624 7.485 1.624 11.045 0 .152.115.308.229.46.337-.584.328-1.194.614-1.83.848.347.654.743 1.277 1.183 1.859 1.816-.556 3.674-1.394 5.59-2.76.473-5.004-.795-9.223-3.003-12.826ZM7.368 12.27c-1.127 0-2.053-.997-2.053-2.22s.912-2.22 2.053-2.22 2.053.997 2.053 2.22-.912 2.22-2.053 2.22Zm7.864 0c-1.127 0-2.053-.997-2.053-2.22s.912-2.22 2.053-2.22 2.053.997 2.053 2.22-.912 2.22-2.053 2.22Z"/></svg>
             </a>
-            <a href="#" target="_blank" class="glass-circle border border-white/5 flex items-center justify-center w-10 h-10 shadow-lg" title="Go to Mint Page">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path><path d="M22 22l-4-4"></path><path d="M18 22l4-4"></path></svg>
+            <a href="https://mint.innerjuicy.io" target="_blank" class="w-12 h-12 rounded-full bg-nav-bg border border-white/5 flex items-center justify-center cursor-pointer hover:bg-white/10 transition group">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 group-hover:text-white"><path d="M12 2a10 10 0 0 1 10 10c0 1.2-.2 2.3-.6 3.4M12 2a10 10 0 0 0-10 10c0 1.2.2 2.3.6 3.4"/><path d="m14 2 2 4h-2M10 2 8 6h2"/><path d="M12 2v4"/><path d="M7 16a10 10 0 0 1 10 0"/><path d="M7 16a10 10 0 0 0 10 0"/><path d="M12 22v-6"/></svg>
             </a>
         </div>
     </header>
@@ -190,7 +173,7 @@
         </div>
     </div>
 
-    <main class="relative z-10 pb-40 px-6 max-w-screen-xl mx-auto">
+    <main class="relative z-10 pb-20">
         <div class="flex justify-between items-end mb-6 px-1">
             <h2 class="text-xl font-bold tracking-tight">All Collection</h2>
             <span class="text-[11px] font-bold text-gray-400 cursor-pointer hover:text-white transition uppercase tracking-wider">See All</span>
@@ -218,51 +201,40 @@
             <div id="ultra-outfits-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
         </div>
     </main>
-
-    <footer class="mt-32 mb-16 pb-16 text-center relative z-40 px-6 max-w-screen-xl mx-auto border-t border-white/5 pt-16">
-        <p class="text-xs text-gray-500 font-semibold uppercase tracking-widest mb-2">Next Chapter</p>
-        <p class="text-sm text-gray-300 font-semibold mb-1">coming soon 시즌 2</p>
-        <p class="footer-title font-extrabold text-xl tracking-tighter">Inner Juicy: THE OVERFLOW</p>
+    
+    <footer class="mt-20 mb-20 relative z-40 px-1">
+        <div class="bg-nav-bg rounded-[28px] p-10 border border-white/5 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center text-center">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-transparent opacity-60"></div>
+            
+            <h3 class="text-base text-gray-500 uppercase tracking-widest font-black mb-4">COMING SOON</h3>
+            <h2 class="text-4xl md:text-5xl font-black text-white tracking-tighter mb-4 leading-none">SEASON 2</h2>
+            <p class="text-gradient-ultra text-2xl font-black tracking-tight">Inner Juicy: THE OVERFLOW</p>
+            
+            <div class="absolute -bottom-10 -right-10 w-20 h-20 rounded-full bg-[#D4AF37] opacity-20 filter blur-xl"></div>
+        </div>
     </footer>
 
     <script>
-        // 오픈씨 컬렉션 링크 생성 함수
         const COLLECTION_URL = "https://opensea.io/collection/inner-juicy";
         function getOpenseaLink(trait, value) {
             return `${COLLECTION_URL}?search[stringTraits][0][name]=${trait}&search[stringTraits][0][values][0]=${encodeURIComponent(value)}`;
         }
 
-        // SVG 아이콘들
         const ethSvg = `<svg width="10" height="14" viewBox="0 0 320 512" fill="currentColor"><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8zM160 383.4L8 290.6 160 512l152-221.4-152 92.8z"/></svg>`;
         const ethBadgeSvg = `<svg width="12" height="16" viewBox="0 0 320 512" fill="currentColor"><path d="M311.9 260.8L160 353.6 8 260.8 160 0l151.9 260.8z"/></svg>`;
         const heartSvg = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
 
-        // 등급별 설정
         const tierConfig = {
-            common: {
-                badgeClass: 'badge-common', tierName: 'Common', priceIconColor: 'white', 
-                bidText: 'View Item', bidClass: 'glass-btn', borderClass: 'card-border-common'
-            },
-            rare: {
-                badgeClass: 'badge-rare', tierName: 'Limited', titleColor: '#9CE2E8', 
-                priceIconColor: '#9CE2E8', bidText: 'Place Bid', bidClass: 'glass-btn', borderClass: 'card-border-rare'
-            },
-            ultra: {
-                badgeClass: 'badge-ultra', tierName: 'Masterpiece', titleColor: '#FAD982', 
-                priceIconColor: '#D4AF37', bidText: 'Make Bid', bidClass: 'gold-btn', borderClass: 'card-border-ultra'
-            }
+            common: { badgeClass: 'badge-common', tierName: 'Common', priceIconColor: 'white', bidText: 'View Item', bidClass: 'glass-btn', borderClass: 'card-border-common' },
+            rare: { badgeClass: 'badge-rare', tierName: 'Limited', titleColor: '#9CE2E8', priceIconColor: '#9CE2E8', bidText: 'Place Bid', bidClass: 'glass-btn', borderClass: 'card-border-rare' },
+            ultra: { badgeClass: 'badge-ultra', tierName: 'Masterpiece', titleColor: '#FAD982', priceIconColor: '#D4AF37', bidText: 'Make Bid', bidClass: 'gold-btn', borderClass: 'card-border-ultra' }
         };
 
-        // 레퍼런스 스타일 카드 생성 함수
         function createCardHTML(config) {
             const { tier, imgSrc, title, subtitle, link, fullNami, isOutfit, customBadge } = config;
             const t = tierConfig[tier];
-            
-            // 🚨 옷 카드는 전용 클래스 추가 (크기 확대 및 하단 정렬)
             const outfitClass = isOutfit ? 'outfit-card' : '';
-            // 울트라 탭 Heads는 [과일명] [속성명]으로 표시
             const mainTitle = fullNami || title;
-            // 옷 카드는 subtitle에 등급 이름 명시
             const mainSubtitle = isOutfit ? `${t.tierName} OUTFIT` : subtitle;
             const badgeText = customBadge || t.tierName;
 
@@ -271,7 +243,7 @@
                     <div class="absolute top-4 left-4 z-20 glass-badge ${t.badgeClass}">
                         ${ethBadgeSvg}
                         <div class="flex flex-col leading-none text-left">
-                            <span class="text-[9px] opacity-70 mb-[1px]">Rarity</span>
+                            <span class="text-[8px] opacity-70 mb-[1px]">Rarity</span>
                             <span class="tracking-wide">${badgeText}</span>
                         </div>
                     </div>
@@ -303,7 +275,7 @@
         }
 
         // ==========================================
-        // 1. HEADS 데이터 세팅 (울트라 속성명 동적 매핑 이전 내용 유지)
+        // 1. HEADS 데이터 세팅
         // ==========================================
         const fruits = [
             { id: 'apple', name: 'Apple', u1: {file: 'crimson', label: 'Crimson'}, u2: {file: 'solar', label: 'Solar'} },
@@ -358,15 +330,6 @@
         // 2. OUTFITS 데이터 세팅
         // ==========================================
         const outfitFiles = [
-            // 🚨 수정됨: 깃허브 스크린샷 기반 모든 파일명 동기화 및 오타 수정 완료
-            {t:'Astronaut Candy', f:'astronaut-candy.png', r:'rare'},
-            {t:'Astronaut Handshake', f:'astronaut-handshake.png', r:'rare'},
-            {t:'Astronaut Suit', f:'astronaut-suit.png', r:'rare'},
-            {t:'Astronaut Wave', f:'astronaut-wave.png', r:'rare'},
-            {t:'Crystal Mage', f:'outfit-crystal-mage.png', r:'ultra'},
-            {t:'Cyberpunk Jacket', f:'outfit-cyberpunk-jacket.png', r:'ultra'},
-            {t:'Dragon Armor', f:'outfit-dragon-armor.png', r:'ultra'},
-            {t:'Gold Astronaut', f:'outfit-gold-astronaut.png', r:'ultra'},
             {t:'Green Sweater 1', f:'green-sweater-1.png', r:'common'},
             {t:'Green Sweater 2', f:'green-sweater-2.png', r:'common'},
             {t:'Green Sweater 3', f:'green-sweater-3.png', r:'common'},
@@ -377,32 +340,39 @@
             {t:'Hoodie 4', f:'hoodie-4.png', r:'common'},
             {t:'Hoodie 5', f:'hoodie-5.png', r:'common'},
             {t:'Hoodie 6', f:'hoodie-6.png', r:'common'},
-            {t:'Jungle Vest', f:'outfit-jungle-vest.png', r:'ultra'},
-            {t:'Leather Jacket Candy', f:'leather-jacket-candy.png', r:'rare'},
-            {t:'Leather Jacket Handshake', f:'leather-jacket-handshake.png', r:'rare'},
-            {t:'Leather Jacket Shrug', f:'leather-jacket-shrug.png', r:'rare'},
-            {t:'Leather Jacket', f:'leather-jacket.png', r:'rare'},
             {t:'Navy Sweater 1', f:'navy-sweater-1.png', r:'common'},
             {t:'Navy Sweater 2', f:'navy-sweater-2.png', r:'common'},
             {t:'Navy Sweater 3', f:'navy-sweater-3.png', r:'common'},
             {t:'Navy Sweater 4', f:'navy-sweater-4.png', r:'common'},
             {t:'Navy Sweater 5', f:'navy-sweater-5.png', r:'common'},
             {t:'Navy Sweater 6', f:'navy-sweater-6.png', r:'common'},
-            {t:'Nebula Hood', f:'outfit-nebula-hood.png', r:'ultra'},
-            {t:'Pharaoh', f:'outfit-pharaoh.png', r:'ultra'},
-            {t:'Royal Robe', f:'outfit-royal-robe.png', r:'ultra'},
-            {t:'Spiked Punk', f:'outfit-spiked-punk.png', r:'ultra'},
-            {t:'Steampunk Vest', f:'outfit-steampunk-vest.png', r:'ultra'},
+            {t:'Astronaut Candy', f:'astronaut-candy.png', r:'rare'},
+            {t:'Astronaut Handshake', f:'astronaut-handshake.png', r:'rare'},
+            {t:'Astronaut Suit', f:'astronaut-suit.png', r:'rare'},
+            {t:'Astronaut Wave', f:'astronaut-wave.png', r:'rare'},
+            {t:'Leather Jacket Candy', f:'leather-jacket-candy.png', r:'rare'},
+            {t:'Leather Jacket Handshake', f:'leather-jacket-handshake.png', r:'rare'},
+            {t:'Leather Jacket Shrug', f:'leather-jacket-shrug.png', r:'rare'},
+            {t:'Leather Jacket', f:'leather-jacket.png', r:'rare'},
             {t:'Work Jacket Candy', f:'work-jacket-candy.png', r:'rare'},
             {t:'Work Jacket Cross', f:'work-jacket-cross.png', r:'rare'},
             {t:'Work Jacket Offer', f:'work-jacket-offer.png', r:'rare'},
-            {t:'Work Jacket', f:'work-jacket.png', r:'rare'}
+            {t:'Work Jacket', f:'work-jacket.png', r:'rare'},
+            {t: 'Crystal Mage', f: 'outfit-crystal-mage.png', r:'ultra'},
+            {t: 'Cyberpunk Jacket', f: 'outfit-cyberpunk-jacket.png', r:'ultra'},
+            {t: 'Dragon Armor', f: 'outfit-dragon-armor.png', r:'ultra'},
+            {t: 'Gold Astronaut', f: 'outfit-gold-astronaut.png', r:'ultra'},
+            {t: 'Jungle Vest', f: 'outfit-jungle-vest.png', r:'ultra'},
+            {t: 'Nebula Hood', f: 'outfit-nebula-hood.png', r:'ultra'},
+            {t: 'Pharaoh', f: 'outfit-pharaoh.png', r:'ultra'},
+            {t: 'Royal Robe', f: 'outfit-royal-robe.png', r:'ultra'},
+            {t: 'Spiked Punk', f: 'outfit-spiked-punk.png', r:'ultra'},
+            {t: 'Steampunk Vest', f: 'outfit-steampunk-vest.png', r:'ultra'}
         ];
 
-        const outfitGrid = document.getElementById('outfits-tab-grid');
+        const outfitTabGrid = document.getElementById('outfits-tab-grid');
         outfitFiles.forEach(item => {
-            // 🚨 isOutfit: true 옵션을 주어 크기가 1.75배 크고 바닥 라인이 일치되도록 함
-            outfitGrid.innerHTML += createCardHTML({ 
+            outfitTabGrid.innerHTML += createCardHTML({ 
                 tier: item.r, imgSrc: `./images/${item.f}`, 
                 title: item.t, subtitle: '', 
                 link: getOpenseaLink(item.r === 'ultra' ? 'outfit' : 'outfits', item.t),
@@ -411,7 +381,7 @@
         });
 
         // ==========================================
-        // 3. ULTRA Archive 세팅 (헤드 22종 + 옷 10종 이전 내용 유지)
+        // 3. ULTRA Archive 세팅
         // ==========================================
         const ultraHeadsGrid = document.getElementById('ultra-heads-grid');
         fruits.forEach(f => {
@@ -437,7 +407,7 @@
             });
         });
 
-        // 탭 및 아코디언 로직
+        // 탭 전환 로직
         function switchTab(tab) {
             document.querySelectorAll('.section-container').forEach(s => s.classList.add('hidden'));
             document.getElementById(`sec-${tab}`).classList.remove('hidden');
@@ -452,6 +422,7 @@
             activeBtn.classList.add('tab-active');
         }
 
+        // 아코디언 로직
         function toggleExpand(id) {
             const el = document.getElementById(id);
             el.classList.toggle('active');
